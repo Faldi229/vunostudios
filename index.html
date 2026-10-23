@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuno Studios</title>
+<style>
+:root{--bg:#f1f8f4;--sf:#fff;--tx:#10201a;--mu:#5b7568;--ac:#15a34a;--ac2:#65a30d;--ln:#d5e8dc}
+@media(prefers-color-scheme:dark){:root{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding-bottom:70px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:18px 5vw;border-bottom:1px solid var(--ln)}
+.logo{font-weight:800;font-size:1.3rem;letter-spacing:.04em;background:linear-gradient(90deg,#15a34a,#84cc16,#15a34a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.logo span{font-weight:600}
+nav{display:flex;gap:6px}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.tab{background:none;border:1px solid transparent;padding:8px 18px;border-radius:99px;color:var(--mu);font-weight:600}
+.tab.on{background:var(--sf);border-color:var(--ln);color:var(--tx)}
+main{max-width:1000px;margin:0 auto;padding:40px 5vw}
+.hero h1{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 10px;line-height:1.1}
+.hero p{color:var(--mu);max-width:560px;margin:0 0 20px}
+.sub{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 28px}
+.chip{background:none;border:1px solid var(--ln);padding:7px 16px;border-radius:99px;color:var(--mu)}
+.chip.on{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;border-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{position:relative;background:var(--sf);border:1px solid var(--ln);border-radius:18px;overflow:hidden}
+.card[data-open]:not([data-open=""]){cursor:pointer}
+.card[data-open]:not([data-open=""]):hover{border-color:var(--ac)}
+.cover{position:relative;height:160px;display:flex;align-items:flex-end;padding:14px;font-size:1.5rem;font-weight:800;color:#fff;overflow:hidden}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.65))}
+.cover span{position:relative;z-index:1}
+.body{padding:16px}.body p{margin:0;color:var(--mu);font-size:.95rem}
+.tag{display:inline-block;font-size:.75rem;padding:3px 10px;border-radius:99px;border:1px solid var(--ln);color:var(--mu);margin-top:12px}
+.tl{position:relative;margin-left:10px;padding-left:28px;border-left:2px solid var(--ln)}
+.ev{position:relative;margin-bottom:28px;padding-right:110px}
+.ev::before{content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg)}
+.ev[data-open]:not([data-open=""]){cursor:pointer}
+.ev b{color:var(--ac)}.ev h3{margin:2px 0 4px}.ev p{margin:0;color:var(--mu)}
+.erow{display:flex;gap:8px;align-items:center;margin-bottom:14px}
+.earth{flex:1;display:flex;justify-content:space-between;align-items:center;text-align:left;padding:18px 20px;background:var(--sf);border:1px solid var(--ln);border-radius:16px}
+.earth:hover{border-color:var(--ac)}
+.earth small{display:block;color:var(--mu)}.earth span{color:var(--ac);font-size:1.4rem}
+.back{background:none;border:none;color:var(--ac);font-weight:600;padding:0;margin-bottom:16px}
+.soc{display:flex;align-items:center;gap:14px;padding:18px}
+.soc i{font-style:normal;flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--ac),var(--ac2))}
+.soc small{color:var(--mu)}
+.hide{display:none!important}
+footer{text-align:center;color:var(--mu);padding:30px;border-top:1px solid var(--ln);font-size:.9rem}
+.adm{display:none!important}
+body.admin .adm{display:flex!important}
+.ctl{position:absolute;top:8px;right:8px;gap:4px;z-index:3}
+.erow .ctl{position:static}
+.ctl button,.mini,.add{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:4px 9px;color:var(--tx)}
+.add{border-style:dashed;color:var(--ac);padding:14px;justify-content:center;align-items:center;min-height:60px}
+.mini{margin-bottom:6px}
+#bar{position:fixed;left:0;right:0;bottom:0;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--sf);border-top:2px solid var(--ac);z-index:20;font-size:.85rem}
+#bar button{background:none;border:1px solid var(--ln);border-radius:8px;padding:5px 10px}
+.md{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50;padding:16px}
+.box{background:var(--sf);border-radius:18px;padding:22px;width:100%;max-width:460px;max-height:90vh;overflow:auto}
+.box h3{margin:0 0 10px}.box label{display:block;margin:12px 0 4px;color:var(--mu);font-size:.85rem}
+.box select,.box input:not([type=checkbox]),.box textarea{width:100%;padding:9px 11px;border:1px solid var(--ln);border-radius:10px;background:var(--bg)}
+.ck{display:flex!important;gap:8px;align-items:center;color:var(--tx)!important;margin:6px 0!important}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.row button{padding:8px 16px;border-radius:10px;border:1px solid var(--ln);background:none}
+.row .pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+@keyframes shine{to{background-position:-200% 0}}
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+@keyframes drift{to{transform:translate(4%,3%) scale(1.1)}}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.2),transparent 40%),radial-gradient(circle at 80% 70%,rgba(132,204,22,.15),transparent 40%);animation:drift 16s ease-in-out infinite alternate}
+.hero h1{animation:up .7s backwards}.hero p{animation:up .7s .15s backwards}
+.card,.ev,.erow,.cd{animation:up .5s backwards}
+.grid>:nth-child(2),.ev:nth-child(2),.erow:nth-child(2){animation-delay:.07s}
+.grid>:nth-child(3),.ev:nth-child(3),.erow:nth-child(3){animation-delay:.14s}
+.grid>:nth-child(4),.ev:nth-child(4){animation-delay:.21s}
+.grid>:nth-child(n+5){animation-delay:.28s}
+.card{transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 30px -12px rgba(34,197,94,.45)}
+.cover img{transition:transform .5s}.card:hover .cover img{transform:scale(1.07)}
+.tab,.chip,.earth,.go{transition:all .2s}.earth:hover{transform:translateX(6px)}
+.card[data-c]{cursor:pointer}
+.phw{display:grid;place-items:center;background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:12px}
+.phw img{max-width:100%;max-height:70vh;border-radius:12px}
+.dl{display:inline-block;margin:12px 0 4px;padding:8px 18px;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;text-decoration:none;font-weight:600}
+.dl:hover{transform:scale(1.04)}
+.cd h2{margin:14px 0 6px;font-size:2rem}
+.cd dt{color:var(--ac);font-weight:700;margin-top:16px}.cd dd{margin:4px 0 0;white-space:pre-line;color:var(--mu)}
+.go{background:none;border:1px solid var(--ln);padding:6px 14px;border-radius:99px;color:var(--ac)}.go:hover{border-color:var(--ac)}
+@media(prefers-reduced-motion:reduce){*,::before{animation:none!important;transition:none!important}}
+.off{display:none!important}
+body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed var(--mu)}
+.body p.dt{margin-top:8px;color:var(--ac);font-weight:600;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">VUNO <span>STUDIOS</span></div>
+  <nav>
+    <button class="tab on" data-t="projects">Проекты</button>
+    <button class="tab" data-t="chars">Персонажи</button>
+    <button class="tab" data-t="social">Соцсети</button>
+    <button class="tab" id="lk" title="Админ">🔒</button>
+  </nav>
+</header>
+<main>
+  <section id="projects">
+    <div class="hero"><h1 id="hh"></h1><p id="hp"></p>
+      <button class="mini adm" data-a="edit" data-l="site">✎ Изменить текст</button></div>
+    <div class="sub">
+      <button class="chip on" data-s="list">Мои проекты</button>
+      <button class="chip" data-s="universes">Вселенные</button>
+      <button class="chip" data-s="timeline">Хронология (что читать)</button>
+    </div>
+    <div id="list" class="grid"></div>
+    <div id="universes" class="hide"></div>
+    <div id="timeline" class="hide"></div>
+  </section>
+  <section id="chars" class="hide"><div class="hero"><h1>Персонажи</h1></div><div id="chbody"></div></section>
+  <section id="social" class="hide">
+    <div class="hero"><h1>Мы в соцсетях</h1></div>
+    <div id="socgrid" class="grid"></div>
+  </section>
+</main>
+<footer>© 2026 Vuno Studios</footer>
+
+<div id="bar" class="adm">
+  <b>Админ</b>
+  <button id="vb">Вкладки</button>
+  <button id="ex">Экспорт data.json</button>
+  <button id="im">Импорт</button><input type="file" id="imf" accept=".json" hidden>
+  <button id="rs">Сбросить черновик</button>
+  <button id="lo">Выйти</button>
+</div>
+<div id="md" class="md hide"><div class="box"><h3 id="mt"></h3><div id="mf"></div>
+  <div class="row"><button id="mc">Отмена</button><button id="ms" class="pri">Сохранить</button></div></div></div>
+
+<script>
+// SHA-256 от "vuno|" + пароль. Пароль в открытом виде в коде не хранится.
+const PH="c921b45655a1d750a1a9da61f0debe253e83ff6f5b3634a950aa275bd6664e2c";
+const DEF={
+ site:{h:"Создаём миры,\nв которые хочется вернуться.",p:"Vuno Studios — независимая комикс-студия. Здесь наши комиксы, мультивселенная и порядок чтения."},
+ projects:[
+  {id:"p1",n:"Project Zenith",d:"Описание проекта — замените на своё.",s:"В разработке",cv:"",u:""},
+  {id:"p2",n:"Volt",d:"Описание проекта — замените на своё.",s:"Анонсирован",cv:"",u:""}],
+ earths:[
+  {id:"e0",n:"Земля-0",t:"Основная реальность мультивселенной.",p:["p1","p2"]},
+  {id:"e1",n:"Земля-1",t:"Альтернативная реальность.",p:["p2"]}],
+ reading:[
+  {id:"r1",t:"Volt — Выпуск №1",d:"Начните отсюда.",y:"2023",u:""},
+  {id:"r2",t:"Project Zenith — Выпуск №1",d:"Читать после Volt №1.",y:"2025",u:""}],
+ soc:[
+  {id:"s1",n:"YouTube",h:"@vunostudios",u:""},
+  {id:"s2",n:"Telegram",h:"@vunostudios",u:""}],
+ chars:[
+  {id:"c1",n:"Зенит",tp:"Герой",cv:"",ph:"",ch:"Смелый и упрямый.",pw:"Полёт, сверхсила.",e:"e0"},
+  {id:"c2",n:"Вольт",tp:"Антигерой",cv:"",ph:"",ch:"Холодный и расчётливый.",pw:"Управление электричеством.",e:"e1"}]
+};
+const FD={
+ site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
+ projects:[["n","Название"],["s","Статус"],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["u","Ссылка на сайт проекта"],["dt","Дата выхода","d"]],
+ earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
+ reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["u","Ссылка (необязательно)"],["dt","Дата выхода","d"]],
+ soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
+ chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","a"],["pw","Силы","a"],["e","Из какой Земли","s",()=>[["","—"],...D.earths.map(x=>[x.id,x.n])]]]
+};
+const G=["linear-gradient(135deg,#059669,#84cc16)","linear-gradient(135deg,#0d9488,#22c55e)","linear-gradient(135deg,#15803d,#a3e635)","linear-gradient(135deg,#065f46,#34d399)"];
+let D=DEF,EO=null,CO=null;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const su=u=>/^https?:\/\//i.test(u||"")?u:"";
+const sc=u=>/^(https?:\/\/|data:image\/)/i.test(u||"")?u:"";
+const uid=()=>Math.random().toString(36).slice(2,8);
+const ctl=(l,i)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}">${t}</button>`).join("")}</div>`;
+const add=l=>`<button class="add adm" data-a="add" data-l="${l}">+ Добавить</button>`;
+const pcard=(p,i,c)=>`<div class="card" data-open="${esc(su(p.u))}"><div class="cover" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><p>${esc(p.d)}</p>${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}</div>${c?ctl("projects",i):""}</div>`;
+
+function render(){
+ $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
+ $("#list").innerHTML=D.projects.map((p,i)=>pcard(p,i,1)).join("")+add("projects");
+ if(EO&&!D.earths.find(e=>e.id==EO))EO=null;
+ const e=D.earths.find(x=>x.id==EO);
+ $("#universes").innerHTML=e?`<button class="back" data-back>← Все Земли</button><h2 style="margin:0 0 6px">${esc(e.n)}</h2><p style="color:var(--mu);margin:0 0 6px">${esc(e.t)}</p><button class="mini adm" data-a="edit" data-l="earths" data-i="${D.earths.indexOf(e)}">✎ Изменить Землю</button><div class="grid" style="margin-top:14px">${e.p.map(id=>D.projects.findIndex(p=>p.id==id)).filter(i=>i>=0).map(i=>pcard(D.projects[i],i,0)).join("")}</div>`
+  :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
+ $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
+ $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-open="${esc(su(r.u))}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();vis();
+}
+const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"],["universes","Вселенные"],["timeline","Хронология"]];
+const fd=v=>{const d=new Date(v+"T00:00:00");if(isNaN(d))return esc(v);return"📅 "+d.toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"})+(d>new Date()?" · скоро":"")};
+function vis(){
+ const h=D.hide||{},adm=document.body.classList.contains("admin");
+ TB.forEach(([k])=>$(`.tab[data-t=${k}]`).classList.toggle("off",!!h[k]));
+ SB.forEach(([k])=>$(`.chip[data-s=${k}]`).classList.toggle("off",!!h[k]));
+ if(adm)return;
+ for(const s of[".tab[data-t]",".chip"]){const a=document.querySelector(s+".on");if(a&&a.classList.contains("off")){const f=document.querySelector(s+":not(.off)");if(f)f.click()}}
+}
+const TC={"Герой":"#16a34a","Злодей":"#dc2626","Антигерой":"#d97706"};
+const eN=id=>(D.earths.find(x=>x.id==id)||{}).n||"";
+const tg=t=>t?`<span class="tag" style="color:${TC[t]||"var(--mu)"};border-color:${TC[t]||"var(--ln)"}">${esc(t)}</span>`:"";
+function rch(){
+ const i=D.chars.findIndex(x=>x.id==CO),c=D.chars[i],B=$("#chbody");
+ if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${eN(c.e)?` <span class="tag">${esc(eN(c.e))}</span>`:""}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
+ const ph=sc(c.ph)||sc(c.cv),ext=/^data:image\/png|\.png(\?|$)/i.test(ph)?"png":"jpg";
+ B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}<dl><dt>Характер</dt><dd>${esc(c.ch)}</dd><dt>Силы</dt><dd>${esc(c.pw)}</dd>${eN(c.e)&&!(D.hide||{}).universes?`<dt>Из какой Земли</dt><dd><button class="go" data-ge="${c.e}">${esc(eN(c.e))} →</button></dd>`:""}</dl><button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
+function commit(){try{localStorage.setItem("vuno",JSON.stringify(D))}catch(e){alert("Не удалось сохранить черновик: слишком большие картинки. Используйте ссылки на обложки.")}render()}
+
+function modal(title,fields,vals,ok){
+ $("#mt").textContent=title;
+ $("#mf").innerHTML=fields.map(([k,lb,t,op])=>{const v=vals[k]??(t=="m"?[]:"");
+  if(t=="m")return `<label>${lb}</label><div class="chk">${(op?op():D.projects.map(p=>[p.id,p.n])).map(([id,n])=>`<label class="ck"><input type="checkbox" value="${esc(id)}" ${v.includes(id)?"checked":""}>${esc(n)}</label>`).join("")}</div>`;
+  if(t=="s")return `<label>${lb}</label><select data-k="${k}">${op().map(([x,y])=>`<option value="${esc(x)}" ${x==v?"selected":""}>${esc(y)}</option>`).join("")}</select>`;
+  if(t=="a")return `<label>${lb}</label><textarea data-k="${k}" rows="3">${esc(v)}</textarea>`;
+  if(t=="i")return `<label>${lb}</label><input data-k="${k}" value="${esc(v)}" placeholder="https://…"><input type="file" accept="image/*" data-f="${k=="ph"?1600:700}" style="margin-top:6px">`;
+  return `<label>${lb}</label><input data-k="${k}" ${t=="p"?'type="password"':t=="d"?'type="date"':""} value="${esc(v)}">`}).join("");
+ $("#md").classList.remove("hide");
+ $("#mc").onclick=()=>$("#md").classList.add("hide");
+ $("#ms").onclick=async()=>{const o={};$("#mf").querySelectorAll("[data-k]").forEach(e=>o[e.dataset.k]=e.value);
+  const m=$("#mf .chk");if(m)o.p=[...m.querySelectorAll("input:checked")].map(x=>x.value);
+  if(await ok(o)!==false)$("#md").classList.add("hide")};
+ const f=$("#mf input");if(f)f.focus();
+}
+function editItem(l,n){
+ if(l=="site")return modal("Текст главной",FD.site,D.site,o=>{Object.assign(D.site,o);commit()});
+ const L=D[l],isNew=n<0;
+ modal(isNew?"Добавить":"Редактировать",FD[l],isNew?{}:L[n],o=>{
+  if(isNew)L.push({id:uid(),...o});else Object.assign(L[n],o);commit()});
+}
+async function H(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("vuno|"+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function setAdmin(on){document.body.classList.toggle("admin",on);vis();$("#lk").textContent=on?"🔓":"🔒";try{on?sessionStorage.setItem("vuno_a","1"):sessionStorage.removeItem("vuno_a")}catch(e){}}
+
+document.addEventListener("change",e=>{
+ if(!e.target.matches("[data-f]")||!e.target.files[0])return;
+ const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+  const k=Math.min(1,(+e.target.dataset.f||700)/im.width),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;
+  c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+  e.target.previousElementSibling.value=c.toDataURL(/png/.test(e.target.files[0].type)?"image/png":"image/jpeg",.85)};im.src=r.result};r.readAsDataURL(e.target.files[0]);
+});
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-a]");
+ if(b){const{a,l,i}=b.dataset,n=+i;
+  if(a=="edit"||a=="add")return editItem(l,a=="add"?-1:n);
+  const L=D[l];
+  if(a=="up"&&n>0)[L[n-1],L[n]]=[L[n],L[n-1]];
+  if(a=="dn"&&n<L.length-1)[L[n+1],L[n]]=[L[n],L[n+1]];
+  if(a=="del"){if(!confirm("Удалить?"))return;const x=L.splice(n,1)[0];if(l=="projects")D.earths.forEach(z=>z.p=z.p.filter(q=>q!=x.id))}
+  return commit()}
+ const t=e.target.closest(".tab[data-t]");
+ if(t){document.querySelectorAll(".tab[data-t]").forEach(x=>x.classList.toggle("on",x==t));
+  ["projects","chars","social"].forEach(id=>$("#"+id).classList.toggle("hide",id!=t.dataset.t));return}
+ const c=e.target.closest(".chip");
+ if(c){document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
+  ["list","universes","timeline"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));
+  $("#timeline").dataset.v=c.dataset.s=="timeline"?"1":"";return}
+ const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;return rch()}
+ if(e.target.closest("[data-cback]")){CO=null;return rch()}
+ const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
+ const er=e.target.closest("[data-e]");if(er){EO=er.dataset.e;return render()}
+ if(e.target.closest("[data-back]")){EO=null;return render()}
+ const o=e.target.closest("[data-open]");
+ if(o&&o.dataset.open&&!e.target.closest(".ctl"))window.open(o.dataset.open,"_blank","noopener");
+});
+$("#lk").onclick=()=>{
+ if(document.body.classList.contains("admin"))return;
+ modal("Вход для админа",[["pw","Пароль","p"]],{},async o=>{
+  if(!crypto.subtle){alert("Вход работает только по https или на localhost.");return false}
+  if(await H(o.pw)==PH){setAdmin(true);return true}
+  alert("Неверный пароль");return false});
+};
+$("#lo").onclick=()=>setAdmin(false);
+$("#vb").onclick=()=>{const A=[...TB,...SB];modal("Какие вкладки показывать",[["p","Показывать","m",()=>A]],{p:A.map(x=>x[0]).filter(k=>!(D.hide||{})[k])},o=>{D.hide={};A.forEach(([k])=>{if(!o.p.includes(k))D.hide[k]=1});commit()})};
+$("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:"application/json"}));a.download="data.json";a.click()};
+$("#im").onclick=()=>$("#imf").click();
+$("#imf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.projects))throw 0;D=fix(d);commit()}catch(x){alert("Неверный файл data.json")}};r.readAsText(f)};
+$("#rs").onclick=()=>{if(confirm("Удалить черновик и вернуть опубликованную версию?")){try{localStorage.removeItem("vuno")}catch(e){}location.reload()}};
+const fix=d=>({site:d.site||DEF.site,projects:d.projects||[],earths:d.earths||[],reading:d.reading||[],soc:d.soc||[],chars:d.chars||[],hide:d.hide||{}});
+(async()=>{
+ let d=DEF;
+ try{const r=await fetch("data.json",{cache:"no-store"});if(r.ok)d=await r.json()}catch(e){}
+ try{const s=localStorage.getItem("vuno");if(s)d=JSON.parse(s)}catch(e){}
+ D=fix(d);render();
+ try{if(sessionStorage.getItem("vuno_a"))setAdmin(true)}catch(e){}
+})();
+</script>
+</body>
+</html>
