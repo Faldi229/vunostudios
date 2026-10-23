@@ -111,10 +111,13 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
       <button class="chip on" data-s="list">Мои проекты</button>
       <button class="chip" data-s="universes">Вселенные</button>
       <button class="chip" data-s="timeline">Хронология (что читать)</button>
+      <span id="xc" style="display:contents"></span>
+      <button class="mini adm" data-a="add" data-l="secs">+ Раздел</button>
     </div>
     <div id="list" class="grid"></div>
     <div id="universes" class="hide"></div>
     <div id="timeline" class="hide"></div>
+    <div id="sec" class="hide"></div>
   </section>
   <section id="chars" class="hide"><div class="hero"><h1>Персонажи</h1></div><div id="chbody"></div></section>
   <section id="social" class="hide">
@@ -162,18 +165,20 @@ const FD={
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
  reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["u","Ссылка (необязательно)"],["dt","Дата выхода","d"]],
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
+ secs:[["n","Название раздела"],["t","Описание раздела","a"]],
  chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","a"],["pw","Силы","a"],["e","Из какой Земли","s",()=>[["","—"],...D.earths.map(x=>[x.id,x.n])]]]
 };
+FD.items=FD.projects;
 const G=["linear-gradient(135deg,#059669,#84cc16)","linear-gradient(135deg,#0d9488,#22c55e)","linear-gradient(135deg,#15803d,#a3e635)","linear-gradient(135deg,#065f46,#34d399)"];
-let D=DEF,EO=null,CO=null;
+let D=DEF,EO=null,CO=null,SO=null;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const su=u=>/^https?:\/\//i.test(u||"")?u:"";
 const sc=u=>/^(https?:\/\/|data:image\/)/i.test(u||"")?u:"";
 const uid=()=>Math.random().toString(36).slice(2,8);
-const ctl=(l,i)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}">${t}</button>`).join("")}</div>`;
-const add=l=>`<button class="add adm" data-a="add" data-l="${l}">+ Добавить</button>`;
-const pcard=(p,i,c)=>`<div class="card" data-open="${esc(su(p.u))}"><div class="cover" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><p>${esc(p.d)}</p>${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}</div>${c?ctl("projects",i):""}</div>`;
+const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
+const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
+const pcard=(p,i,c,l,x)=>`<div class="card" data-open="${esc(su(p.u))}"><div class="cover" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><p>${esc(p.d)}</p>${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
@@ -184,14 +189,23 @@ function render(){
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-open="${esc(su(r.u))}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
- $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();vis();
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();vis();
 }
 const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"],["universes","Вселенные"],["timeline","Хронология"]];
 const fd=v=>{const d=new Date(v+"T00:00:00");if(isNaN(d))return esc(v);return"📅 "+d.toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"})+(d>new Date()?" · скоро":"")};
+function rxc(){
+ const sh=!$("#sec").classList.contains("hide");
+ if(sh&&!D.secs.some(x=>x.id==SO))$(".chip[data-s=list]").click();
+ $("#xc").innerHTML=D.secs.map(x=>`<button class="chip${sh&&SO==x.id?" on":""}" data-s="sec" data-sid="${x.id}">${esc(x.n)}</button>`).join("")}
+function rsec(){
+ const i=D.secs.findIndex(x=>x.id==SO),s=D.secs[i],B=$("#sec");
+ if(!s){B.innerHTML="";return}
+ B.innerHTML=`<h2 style="margin:0 0 6px">${esc(s.n)}</h2><p style="color:var(--mu);margin:0 0 10px">${esc(s.t)}</p><div class="adm" style="gap:6px;flex-wrap:wrap;margin-bottom:14px">${["up","dn","edit","del"].map((a,k)=>`<button class="mini" data-a="${a}" data-l="secs" data-i="${i}">${["← Раздел","Раздел →","✎ Раздел","✕ Раздел"][k]}</button>`).join("")}</div><div class="grid">${s.items.map((p,j)=>pcard(p,j,1,"items",s.id)).join("")+add("items",s.id)}</div>`}
 function vis(){
  const h=D.hide||{},adm=document.body.classList.contains("admin");
  TB.forEach(([k])=>$(`.tab[data-t=${k}]`).classList.toggle("off",!!h[k]));
  SB.forEach(([k])=>$(`.chip[data-s=${k}]`).classList.toggle("off",!!h[k]));
+ D.secs.forEach(x=>{const e=$(`.chip[data-sid="${x.id}"]`);if(e)e.classList.toggle("off",!!h[x.id])});
  if(adm)return;
  for(const s of[".tab[data-t]",".chip"]){const a=document.querySelector(s+".on");if(a&&a.classList.contains("off")){const f=document.querySelector(s+":not(.off)");if(f)f.click()}}
 }
@@ -220,11 +234,11 @@ function modal(title,fields,vals,ok){
   if(await ok(o)!==false)$("#md").classList.add("hide")};
  const f=$("#mf input");if(f)f.focus();
 }
-function editItem(l,n){
+function editItem(l,n,sid){
  if(l=="site")return modal("Текст главной",FD.site,D.site,o=>{Object.assign(D.site,o);commit()});
- const L=D[l],isNew=n<0;
+ const L=sid?D.secs.find(x=>x.id==sid).items:D[l],isNew=n<0;
  modal(isNew?"Добавить":"Редактировать",FD[l],isNew?{}:L[n],o=>{
-  if(isNew)L.push({id:uid(),...o});else Object.assign(L[n],o);commit()});
+  if(isNew)L.push({id:uid(),...(l=="secs"?{items:[]}:{}),...o});else Object.assign(L[n],o);commit()});
 }
 async function H(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("vuno|"+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 function setAdmin(on){document.body.classList.toggle("admin",on);vis();$("#lk").textContent=on?"🔓":"🔒";try{on?sessionStorage.setItem("vuno_a","1"):sessionStorage.removeItem("vuno_a")}catch(e){}}
@@ -239,8 +253,8 @@ document.addEventListener("change",e=>{
 document.addEventListener("click",e=>{
  const b=e.target.closest("[data-a]");
  if(b){const{a,l,i}=b.dataset,n=+i;
-  if(a=="edit"||a=="add")return editItem(l,a=="add"?-1:n);
-  const L=D[l];
+  if(a=="edit"||a=="add")return editItem(l,a=="add"?-1:n,b.dataset.sid);
+  const L=b.dataset.sid?D.secs.find(x=>x.id==b.dataset.sid).items:D[l];
   if(a=="up"&&n>0)[L[n-1],L[n]]=[L[n],L[n-1]];
   if(a=="dn"&&n<L.length-1)[L[n+1],L[n]]=[L[n],L[n+1]];
   if(a=="del"){if(!confirm("Удалить?"))return;const x=L.splice(n,1)[0];if(l=="projects")D.earths.forEach(z=>z.p=z.p.filter(q=>q!=x.id))}
@@ -250,7 +264,7 @@ document.addEventListener("click",e=>{
   ["projects","chars","social"].forEach(id=>$("#"+id).classList.toggle("hide",id!=t.dataset.t));return}
  const c=e.target.closest(".chip");
  if(c){document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
-  ["list","universes","timeline"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));
+  ["list","universes","timeline","sec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));if(c.dataset.sid){SO=c.dataset.sid;rsec()}
   $("#timeline").dataset.v=c.dataset.s=="timeline"?"1":"";return}
  const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;return rch()}
  if(e.target.closest("[data-cback]")){CO=null;return rch()}
@@ -268,12 +282,12 @@ $("#lk").onclick=()=>{
   alert("Неверный пароль");return false});
 };
 $("#lo").onclick=()=>setAdmin(false);
-$("#vb").onclick=()=>{const A=[...TB,...SB];modal("Какие вкладки показывать",[["p","Показывать","m",()=>A]],{p:A.map(x=>x[0]).filter(k=>!(D.hide||{})[k])},o=>{D.hide={};A.forEach(([k])=>{if(!o.p.includes(k))D.hide[k]=1});commit()})};
+$("#vb").onclick=()=>{const A=[...TB,...SB,...D.secs.map(x=>[x.id,x.n])];modal("Какие вкладки показывать",[["p","Показывать","m",()=>A]],{p:A.map(x=>x[0]).filter(k=>!(D.hide||{})[k])},o=>{D.hide={};A.forEach(([k])=>{if(!o.p.includes(k))D.hide[k]=1});commit()})};
 $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:"application/json"}));a.download="data.json";a.click()};
 $("#im").onclick=()=>$("#imf").click();
 $("#imf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.projects))throw 0;D=fix(d);commit()}catch(x){alert("Неверный файл data.json")}};r.readAsText(f)};
 $("#rs").onclick=()=>{if(confirm("Удалить черновик и вернуть опубликованную версию?")){try{localStorage.removeItem("vuno")}catch(e){}location.reload()}};
-const fix=d=>({site:d.site||DEF.site,projects:d.projects||[],earths:d.earths||[],reading:d.reading||[],soc:d.soc||[],chars:d.chars||[],hide:d.hide||{}});
+const fix=d=>({site:d.site||DEF.site,projects:d.projects||[],earths:d.earths||[],reading:d.reading||[],soc:d.soc||[],chars:d.chars||[],hide:d.hide||{},secs:(d.secs||[]).map(x=>({...x,items:x.items||[]}))});
 (async()=>{
  let d=DEF;
  try{const r=await fetch("data.json",{cache:"no-store"});if(r.ok)d=await r.json()}catch(e){}
