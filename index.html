@@ -91,7 +91,7 @@ body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none
 .off{display:none!important}
 body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed var(--mu)}
 .body p.dt{margin-top:8px;color:var(--ac);font-weight:600;font-size:.85rem}
-.card[data-p]{cursor:pointer}
+.card[data-p],.ev[data-p]:not([data-p=""]){cursor:pointer}
 #rd{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);animation:up .3s}
 .ri{max-width:820px;margin:0 auto;padding:18px 4vw 60px}
 .rb{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:18px}
@@ -172,9 +172,9 @@ const DEF={
 };
 const FD={
  site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
- projects:[["n","Название"],["s","Статус"],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["u","Ссылка на сайт проекта (кнопка внутри проекта)"],["dt","Дата выхода","d"]],
+ projects:[["n","Название"],["s","Статус"],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
- reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["u","Ссылка (необязательно)"],["dt","Дата выхода","d"]],
+ reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["pr","Проект, который откроется по клику","s",()=>PO()],["dt","Дата выхода","d"]],
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
  secs:[["n","Название раздела"],["w","Где разместить","s",()=>[["sub","Внутри «Проекты» (ряд вкладок)"],["top","Главное меню"]]],["ty","Тип раздела","s",()=>TYS],["t","Текст над содержимым (необязательно)","a"],["tx","Текст (для типа «Текст»)","a"]],
  chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","a"],["pw","Силы","a"],["e","Из какой Земли","s",()=>[["","—"],...D.earths.map(x=>[x.id,x.n])]]]
@@ -199,7 +199,7 @@ function render(){
  $("#universes").innerHTML=e?`<button class="back" data-back>← Все Земли</button><h2 style="margin:0 0 6px">${esc(e.n)}</h2><p style="color:var(--mu);margin:0 0 6px">${esc(e.t)}</p><button class="mini adm" data-a="edit" data-l="earths" data-i="${D.earths.indexOf(e)}">✎ Изменить Землю</button><div class="grid" style="margin-top:14px">${e.p.map(id=>D.projects.findIndex(p=>p.id==id)).filter(i=>i>=0).map(i=>pcard(D.projects[i],i,0)).join("")}</div>`
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
- $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-open="${esc(su(r.u))}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
+ $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
  $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();names();vis();rd();
 }
 const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"],["universes","Вселенные"],["timeline","Хронология (что читать)"]];
@@ -212,12 +212,13 @@ function rxc(){
  const th=!$("#tsec").classList.contains("hide");
  if(th&&!D.secs.some(x=>x.id==TO&&x.w=="top"))$(".tab[data-t=projects]").click();
  $("#xt").innerHTML=D.secs.filter(x=>x.w=="top").map(x=>`<button class="tab${th&&TO==x.id?" on":""}" data-t="tsec" data-sid="${x.id}">${esc(x.n)}</button>`).join("")}
+const PO=()=>[["","— не выбран —"],...D.projects.map(p=>["projects::"+p.id,p.n]),...D.secs.filter(s=>(s.ty||"cards")=="cards").flatMap(s=>s.items.map(p=>["items:"+s.id+":"+p.id,p.n+" ("+s.n+")"]))];
 const TYS=[["cards","Карточки (как проекты)"],["timeline","Хронология / порядок"],["links","Ссылки (как соцсети)"],["text","Текст"]];
 function rsec(){
  for(const[id,v,T]of[["#sec",SO,0],["#tsb",TO,1]]){const i=D.secs.findIndex(x=>x.id==v&&(x.w=="top")==!!T);$(id).innerHTML=i<0?"":secBody(D.secs[i],i)}}
 function secBody(s,i){
  const ty=s.ty||"cards",it=s.items||[],x=s.id;
- const b=ty=="timeline"?`<div class="tl">${it.map((r,j)=>`<div class="ev" data-open="${esc(su(r.u))}"><b>№${j+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("items",j,x)}</div>`).join("")}</div>${add("items",x)}`
+ const b=ty=="timeline"?`<div class="tl">${it.map((r,j)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>№${j+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("items",j,x)}</div>`).join("")}</div>${add("items",x)}`
  :ty=="links"?`<div class="grid">${it.map((r,j)=>`<div class="card soc" data-open="${esc(su(r.u))}"><i>${esc((r.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(r.n)}</b><br><small>${esc(r.h)}</small></div>${ctl("items",j,x)}</div>`).join("")+add("items",x)}</div>`
  :ty=="text"?`<div style="white-space:pre-line;color:var(--mu);max-width:640px">${esc(s.tx)}</div>`
  :`<div class="grid">${it.map((p,j)=>pcard(p,j,1,"items",x)).join("")+add("items",x)}</div>`;
@@ -228,11 +229,10 @@ function rd(){
  if(!RP){R.classList.add("hide");document.body.style.overflow="";return}
  const f=findP(RP),p=f.p;
  if(!p){RP=null;return rd()}
- const pg=p.pg||[],u=su(p.u);
+ const pg=p.pg||[];
  R.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-rx>← На главную</button><span style="color:var(--mu)">Страниц: ${pg.length}</span></div>
 <h1>${esc(p.n)}</h1>${p.s||p.dt?`<div style="margin-bottom:12px">${p.s?`<span class="tag">${esc(p.s)}</span> `:""}${p.dt?`<span class="tag">${fd(p.dt)}</span>`:""}</div>`:""}
 ${p.d?`<p class="rdesc">${esc(p.d)}</p>`:""}
-${u?`<a class="dl" href="${esc(u)}" target="_blank" rel="noopener">Сайт проекта ↗</a>`:""}
 <div class="adm" style="gap:6px;flex-wrap:wrap;margin:10px 0"><button class="mini" data-pa="edit">✎ Изменить проект</button><button class="mini" data-pa="add">+ Добавить страницы</button></div>
 ${pg.map((src,k)=>`<div class="pgw"><img src="${esc(sc(src))}" loading="lazy" alt="Страница ${k+1}"><div class="ctl adm">${[["up","↑"],["dn","↓"],["del","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")||`<p style="color:var(--mu)">Страниц пока нет.</p>`}
 <div class="rb" style="margin-top:24px"><button class="go" data-rt>↑ Наверх</button><button class="go" data-rx>← На главную</button></div></div>`;
@@ -316,7 +316,7 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-rx]")){RP=null;return rd()}
  if(e.target.closest("[data-rt]"))return $("#rd").scrollTo({top:0,behavior:"smooth"});
  const pp=e.target.closest("[data-p]");
- if(pp&&!e.target.closest(".ctl")){RP=pp.dataset.p;$("#rd").scrollTop=0;return rd()}
+ if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){RP=pp.dataset.p;$("#rd").scrollTop=0;return rd()}
  const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;return rch()}
  if(e.target.closest("[data-cback]")){CO=null;return rch()}
  const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
