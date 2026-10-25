@@ -185,7 +185,7 @@ let D=DEF,EO=null,CO=null,SO=null,TO=null,RP=null,PGQ=[];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const su=u=>/^https?:\/\//i.test(u||"")?u:"";
-const sc=u=>/^(https?:\/\/|data:image\/|[\w\-./%@]+\.(png|jpe?g|webp|gif|avif)(\?.*)?$)/i.test(u||"")?u:"";
+const sc=u=>/^(https?:\/\/|data:image\/|[^"'<>:\\\n]+\.(png|jpe?g|webp|gif|avif)(\?.*)?$)/i.test(u||"")?u:"";
 const uid=()=>Math.random().toString(36).slice(2,8);
 const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
 const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
