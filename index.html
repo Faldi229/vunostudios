@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vuno Studios</title>
+
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@900&family=Fira+Sans+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("vuno_th");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-:root{--bg:#f1f8f4;--sf:#fff;--tx:#10201a;--mu:#5b7568;--ac:#15a34a;--ac2:#65a30d;--ln:#d5e8dc}
-@media(prefers-color-scheme:dark){:root{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
+:root{--bg:#f1f8f4;--sf:#fff;--tx:#10201a;--mu:#5b7568;--ac:#15a34a;--ac2:#65a30d;--ln:#d5e8dc;--ink:#10201a;--sh:#4ade80}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#34d399;--sh:#065f46;--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding-bottom:70px}
 header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:18px 5vw;border-bottom:1px solid var(--ln)}
@@ -99,6 +104,58 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
 .rdesc{color:var(--mu);white-space:pre-line;margin:0 0 14px}
 .pgw{position:relative;margin:0 auto 10px}
 .pgw img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:6px}
+:root[data-theme="dark"]{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;--ink:#34d399;--sh:#065f46;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+body{font-family:"UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:18px}
+h1,h2,h3,h4,.logo,.tab,.chip,.dl,.go,.add,.mini,.ev b,.cover span,.nwb,.sh,.back,#bar b{font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;letter-spacing:.02em;text-transform:uppercase}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(34,197,94,.22) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
+header{position:sticky;top:0;z-index:15;background:var(--sf);padding-top:calc(14px + env(safe-area-inset-top,0px));border-bottom:3px solid var(--ink);box-shadow:0 4px 0 var(--sh)}
+.logo{font-size:2rem}
+.tab,.chip{border:2px solid var(--ink);color:var(--tx);background:var(--sf);box-shadow:3px 3px 0 var(--sh);font-size:1.05rem}
+.tab:hover,.chip:hover{transform:translate(-1px,-1px) rotate(-1.5deg)}
+.tab.on{background:var(--ac);color:#fff}
+.chip.on{color:#fff;border-color:var(--ink)}
+.hero h1{font-size:clamp(2.2rem,8vw,4rem);text-shadow:3px 3px 0 var(--sh);line-height:1.05}
+.card{border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--sh)}
+.card:hover{transform:translate(-3px,-3px) rotate(-.7deg);box-shadow:8px 8px 0 var(--sh)}
+.tag{border:2px solid var(--ink);background:var(--bg);color:var(--tx)}
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,185px),1fr));align-items:start;gap:20px}
+.grid:has(>.soc){grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.cover{height:auto;aspect-ratio:2/3;display:block;padding:0}
+.cover.im{aspect-ratio:auto}
+.cover img{position:static;display:block;width:100%;height:auto;object-fit:initial}
+.cover::after{background:linear-gradient(transparent 70%,rgba(0,0,0,.55))}
+.cover span{position:absolute;left:12px;right:12px;bottom:10px;font-size:1.5rem;line-height:1.05;text-shadow:2px 2px 0 #000}
+.sh{display:inline-block;margin:0 0 14px;font-size:1.7rem;background:var(--ac);color:#fff;padding:2px 16px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--sh);transform:skew(-6deg)}
+.nw{display:flex;gap:16px;overflow-x:auto;padding:4px 6px 16px;scroll-snap-type:x mandatory}
+.nw .card{flex:0 0 150px;scroll-snap-align:start}
+.nwb{position:absolute;top:8px;left:8px;z-index:4;background:#facc15;color:#10201a;border:2px solid #10201a;padding:0 8px;border-radius:6px;transform:rotate(-8deg);font-size:1rem}
+.nwrap{margin-bottom:26px}.nwrap:empty{margin:0}
+.hb{display:none}body.admin .hb{display:block;opacity:.45}
+.blk{position:relative;background:var(--sf);border:3px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--sh);padding:12px 16px;margin:14px 0}
+.blk h4{margin:0 0 4px;font-size:1.3rem;color:var(--ac)}
+.bt{white-space:pre-line}
+.bc{gap:6px;flex-wrap:wrap;margin-top:8px}
+.bc button{background:none;border:1px solid var(--ln);border-radius:8px;padding:3px 9px;color:var(--tx)}
+footer{border-top:3px solid var(--ink);font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase}
+body:not(.fx) .hero h1,body:not(.fx) .hero p,body:not(.fx) .card,body:not(.fx) .ev,body:not(.fx) .erow,body:not(.fx) .cd{animation:none}
+.pbar{height:9px;border:2px solid var(--ink);border-radius:6px;margin-top:8px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--ac)}
+@font-face{font-family:"UrwDinBlack";font-weight:900;src:local("URWDIN-CondBlack"),local("URW DIN Condensed Black"),url("fonts/URWDIN-CondBlack.woff2") format("woff2"),url("fonts/URWDIN-CondBlack.otf") format("opentype"),url("fonts/URWDIN-CondBlack.ttf") format("truetype")}
+@font-face{font-family:"UrwDin";font-weight:400;src:local("URWDIN-Regular"),local("URW DIN"),url("fonts/URWDIN-Regular.woff2") format("woff2"),url("fonts/URWDIN-Regular.otf") format("opentype"),url("fonts/URWDIN-Regular.ttf") format("truetype")}
+@font-face{font-family:"UrwDinSC";font-weight:400;src:local("URWDIN-SemiCond"),local("URW DIN Semi Condensed"),url("fonts/URWDIN-SemiCond.woff2") format("woff2"),url("fonts/URWDIN-SemiCond.otf") format("opentype"),url("fonts/URWDIN-SemiCond.ttf") format("truetype")}
+.crw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:0 0 18px}
+.cr{position:relative;border:2px solid var(--ink);border-radius:10px;background:var(--sf);padding:8px 12px;box-shadow:3px 3px 0 var(--sh)}
+.cr small{display:block;color:var(--ac);text-transform:uppercase;font-weight:600;letter-spacing:.06em}
+.cr b{font-size:1.2rem}
+#rd{padding-top:0}
+.ri>.rb:first-child{position:sticky;top:0;z-index:6;background:var(--bg);margin:0 -4vw 14px;padding:calc(10px + env(safe-area-inset-top,0px)) 4vw 10px;border-bottom:3px solid var(--ink)}
+.fab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--ac);color:#fff;box-shadow:3px 3px 0 var(--sh);font-size:1.3rem;z-index:7}
+button.dl{border:3px solid var(--ink);cursor:pointer;font-size:1.1rem;margin:0 0 14px}
+.rfl{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;align-items:center;z-index:41}
+.rfl button,.rfl span{background:var(--sf);color:var(--tx);border:2px solid var(--ink);border-radius:99px;padding:6px 14px;box-shadow:3px 3px 0 var(--sh);font-family:inherit;font-weight:900;text-transform:uppercase;font-size:1rem;cursor:pointer}
+.rfl span{cursor:default}
+button.dl{border:0;cursor:pointer;font-size:1.05rem;margin:0 0 16px}
 </style>
 </head>
 <body>
@@ -108,13 +165,15 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
     <button class="tab on" data-t="projects">Проекты</button>
     <button class="tab" data-t="chars">Персонажи</button>
     <button class="tab" data-t="social">Соцсети</button>
-    <span id="xt" style="display:contents"></span><button class="tab adm" data-a="add" data-l="secs" title="Добавить раздел">＋</button><button class="tab" id="lk" title="Админ">🔒</button>
+    <span id="xt" style="display:contents"></span><button class="tab adm" data-a="add" data-l="secs" title="Добавить раздел">＋</button><button class="tab" id="th" title="Тема">🌗</button><button class="tab" id="lk" title="Админ">🔒</button>
   </nav>
 </header>
 <main>
   <section id="projects">
     <div class="hero"><h1 id="hh"></h1><p id="hp"></p>
       <button class="mini adm" data-a="edit" data-l="site">✎ Изменить текст</button></div>
+    <div id="rc" class="nwrap"></div>
+    <div id="nw" class="nwrap"></div>
     <div class="sub">
       <button class="chip on" data-s="list">Мои проекты</button>
       <button class="chip" data-s="universes">Вселенные</button>
@@ -172,7 +231,7 @@ const DEF={
 };
 const FD={
  site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
- projects:[["n","Название"],["s","Статус"],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
+ projects:[["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)"],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]]],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
  reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["pr","Проект, который откроется по клику","s",()=>PO()],["dt","Дата выхода","d"]],
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
@@ -181,7 +240,7 @@ const FD={
 };
 FD.i_cards=FD.projects;FD.i_timeline=FD.reading;FD.i_links=FD.soc;
 const G=["linear-gradient(135deg,#059669,#84cc16)","linear-gradient(135deg,#0d9488,#22c55e)","linear-gradient(135deg,#15803d,#a3e635)","linear-gradient(135deg,#065f46,#34d399)"];
-let D=DEF,EO=null,CO=null,SO=null,TO=null,RP=null,PGQ=[];
+let D=DEF,EO=null,CO=null,SO=null,TO=null,RP=null,PGQ=[],RES=0,RS={},TRK=1,SN={};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const su=u=>/^https?:\/\//i.test(u||"")?u:"";
@@ -189,7 +248,7 @@ const sc=u=>/^(https?:\/\/|data:image\/|[^"'<>:\\\n]+\.(png|jpe?g|webp|gif|avif)
 const uid=()=>Math.random().toString(36).slice(2,8);
 const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
 const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
-const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
+const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
@@ -200,7 +259,7 @@ function render(){
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
- $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();names();vis();rd();
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();names();vis();rd();
 }
 const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"],["universes","Вселенные"],["timeline","Хронология (что читать)"]];
 const DEFN=Object.fromEntries([...TB,...SB]),nm=k=>(D.names||{})[k]||DEFN[k];
@@ -230,17 +289,65 @@ function rd(){
  const f=findP(RP),p=f.p;
  if(!p){RP=null;return rd()}
  const pg=p.pg||[];
- R.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-rx>← На главную</button><span style="color:var(--mu)">Страниц: ${pg.length}</span></div>
-<h1>${esc(p.n)}</h1>${p.s||p.dt?`<div style="margin-bottom:12px">${p.s?`<span class="tag">${esc(p.s)}</span> `:""}${p.dt?`<span class="tag">${fd(p.dt)}</span>`:""}</div>`:""}
+ R.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-rx>← На главную</button><span id="pc" style="color:var(--mu);font-weight:600">Страниц: ${pg.length}</span>${(RS[RP]||{}).p>1?`<button class="go" data-rt>↺ С начала</button>`:""}</div>
+<h1>${esc(p.n)}</h1>${p.s||p.dt||p.fm||p.rt||p.ag?`<div style="margin-bottom:12px">${p.fm?`<span class="tag">${esc(p.fm)}</span> `:""}${p.s?`<span class="tag">${esc(p.s)}</span> `:""}${p.dt?`<span class="tag">${fd(p.dt)}</span> `:""}${p.rt?`<span class="tag">★ ${esc(p.rt)}</span> `:""}${p.ag?`<span class="tag">${esc(p.ag)}</span>`:""}</div>`:""}
 ${p.d?`<p class="rdesc">${esc(p.d)}</p>`:""}
-<div class="adm" style="gap:6px;flex-wrap:wrap;margin:10px 0"><button class="mini" data-pa="edit">✎ Изменить проект</button><button class="mini" data-pa="add">+ Добавить страницы</button></div>
-${pg.map((src,k)=>`<div class="pgw"><img src="${esc(sc(src))}" loading="lazy" alt="Страница ${k+1}"><div class="ctl adm">${[["up","↑"],["dn","↓"],["del","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")||`<p style="color:var(--mu)">Страниц пока нет.</p>`}
-<div class="rb" style="margin-top:24px"><button class="go" data-rt>↑ Наверх</button><button class="go" data-rx>← На главную</button></div></div>`;
+${(p.cr||[]).length?`<div class="crw">${p.cr.map((c,k)=>`<div class="cr"><small>${esc(c.r)}</small><b>${esc(c.n)}</b><div class="ctl adm">${[["cup","↑"],["cdn","↓"],["ced","✎"],["cdel","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")}</div>`:""}
+${pg.length&&!p.nz?`<button class="dl" id="zb" data-zip>⬇ Скачать ZIP</button>`:""}
+<div class="adm" style="gap:6px;flex-wrap:wrap;margin:10px 0"><button class="mini" data-pa="edit">✎ Изменить проект</button><button class="mini" data-pa="add">+ Добавить страницы</button><button class="mini" data-pa="cadd">+ Участник</button></div>
+${pg.map((src,k)=>`<div class="pgw"><img src="${esc(sc(src))}" loading="${k<RES?"eager":"lazy"}" alt="Страница ${k+1}"><div class="ctl adm">${[["up","↑"],["dn","↓"],["del","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")||`<p style="color:var(--mu)">Страниц пока нет.</p>`}
+<div class="rfl">${pg.length?`<span id="rpg">1 / ${pg.length}</span><button data-rt>↑</button>`:""}<button data-rx>✕ Выйти</button></div><div class="rb" style="margin-top:24px"><button class="fab" data-rt>↑</button><button class="go" data-rt>↑ Наверх</button><button class="go" data-rx>← На главную</button></div></div>`;
  R.classList.remove("hide");document.body.style.overflow="hidden";
+ if(RES>1){const n=RES;RES=0;TRK=0;Promise.all([...R.querySelectorAll(".pgw img")].slice(0,n).map(x=>x.complete?1:new Promise(r=>{x.onload=x.onerror=r}))).then(()=>{const t=R.querySelectorAll(".pgw")[n-1];if(t)R.scrollTop=t.offsetTop-60;setTimeout(()=>TRK=1,500)})}else TRK=1;
 }
+function blocks(c){
+ const hd=c.hd||{};
+ const bc=(k,cu)=>`<div class="bc adm"><button data-ba="hide" data-bk="${k}">${hd[k]?"👁 Показать":"🙈 Скрыть"}</button>${cu?`<button data-ba="bed" data-bk="${k}">✎</button><button data-ba="bup" data-bk="${k}">↑</button><button data-ba="bdn" data-bk="${k}">↓</button><button data-ba="bdel" data-bk="${k}">✕</button>`:""}</div>`;
+ const B=(k,t,body,cu,ok)=>`<div class="blk${hd[k]||!ok?" hb":""}"><h4>${esc(t)}</h4><div class="bt">${body}</div>${bc(k,cu)}</div>`;
+ let h=B("ch","Характер",esc(c.ch),0,c.ch)+B("pw","Силы",esc(c.pw),0,c.pw);
+ if(eN(c.e)&&!(D.hide||{}).universes)h+=B("e","Из какой Земли",`<button class="go" data-ge="${c.e}">${esc(eN(c.e))} →</button>`,0,1);
+ h+=(c.bl||[]).map(b=>B(b.id,b.t,esc(b.x),1,b.t||b.x)).join("");
+ return h+`<button class="add adm" data-ba="add">+ Добавить блок</button>`}
+function rnw(){
+ const A=[];
+ D.projects.forEach((p,i)=>A.push({p,i,l:"projects",x:"",t:p.ts||0}));
+ D.secs.filter(q=>(q.ty||"cards")=="cards").forEach(q=>q.items.forEach((p,i)=>A.push({p,i,l:"items",x:q.id,t:p.ts||0})));
+ A.sort((a,b)=>b.t-a.t||b.i-a.i);
+ const L=A.filter(z=>!SN[z.l+":"+z.x+":"+z.p.id]).slice(0,8);
+ $("#nw").innerHTML=L.length?`<h2 class="sh">🔥 Новинки</h2><div class="nw">${L.map(z=>pcard(z.p,z.i,0,z.l,z.x).replace(">",RS[z.l+":"+z.x+":"+z.p.id]?">":'><span class="nwb">NEW</span>')).join("")}</div>`:""}
+const saveRS=()=>{try{localStorage.setItem("vuno_rs",JSON.stringify(RS))}catch(e){}};
+function seen(r){SN[r]=1;try{localStorage.setItem("vuno_sn",JSON.stringify(SN))}catch(e){}RS[r]=RS[r]||{p:1};RS[r].t=Date.now();saveRS()}
+let fxT;function fx(){document.body.classList.add("fx");clearTimeout(fxT);fxT=setTimeout(()=>document.body.classList.remove("fx"),900)}
+function rrc(){
+ const L=Object.entries(RS).map(([r,v])=>({r,v,p:findP(r).p})).filter(z=>z.p).sort((a,b)=>b.v.t-a.v.t).slice(0,8);
+ $("#rc").innerHTML=L.length?`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap"><h2 class="sh">📖 Недавно читаемые</h2><button class="go" data-rclr>Очистить</button></div><div class="nw">${L.map(z=>{const p=z.p,n=(p.pg||[]).length,pg=Math.min(z.v.p||1,n||1);return `<div class="card" data-p="${esc(z.r)}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[0]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><span class="tag">${n?`Стр. ${pg} из ${n}`:"Без страниц"}</span>${n?`<div class="pbar"><i style="width:${Math.round(pg/n*100)}%"></i></div>`:""}</div></div>`}).join("")}</div>`:""}
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
+function zip(fl){
+ const en=new TextEncoder(),P=[],C=[];let off=0;
+ for(const f of fl){const nm=en.encode(f.n),c=crc(f.d),L=f.d.length,h=new DataView(new ArrayBuffer(30));
+  h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(12,0x21,true);h.setUint32(14,c,true);h.setUint32(18,L,true);h.setUint32(22,L,true);h.setUint16(26,nm.length,true);
+  P.push(h.buffer,nm,f.d);
+  const e=new DataView(new ArrayBuffer(46));
+  e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(14,0x21,true);e.setUint32(16,c,true);e.setUint32(20,L,true);e.setUint32(24,L,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);
+  C.push(e.buffer,nm);off+=30+nm.length+L}
+ const cs=C.reduce((a,b)=>a+b.byteLength,0),z=new DataView(new ArrayBuffer(22));
+ z.setUint32(0,0x06054b50,true);z.setUint16(8,fl.length,true);z.setUint16(10,fl.length,true);z.setUint32(12,cs,true);z.setUint32(16,off,true);
+ return new Blob([...P,...C,z.buffer],{type:"application/zip"})}
+async function dl(){
+ const p=findP(RP).p,pg=(p&&p.pg)||[],b=$("#zb"),fl=[];
+ if(!pg.length||!b||b.dataset.busy)return;
+ b.dataset.busy=1;
+ try{for(let i=0;i<pg.length;i++){b.textContent="Скачиваю "+(i+1)+" / "+pg.length+"…";
+  const r=await fetch(sc(pg[i]));if(!r.ok)throw 0;const bl=await r.blob();
+  const ext=(bl.type.split("/")[1]||pg[i].split(".").pop()||"jpg").replace("jpeg","jpg").split("+")[0];
+  fl.push({n:String(i).padStart(String(pg.length-1).length,"0")+"."+ext,d:new Uint8Array(await bl.arrayBuffer())})}
+ }catch(e){b.textContent="⬇ Скачать ZIP";delete b.dataset.busy;return alert("Не удалось скачать страницу "+(fl.length+1)+". ZIP работает для страниц, которые лежат на этом же сайте (пути вроде img/…) или загружены файлом, а не для чужих ссылок.")}
+ const a=document.createElement("a");a.href=URL.createObjectURL(zip(fl));a.download=((p.n||"comic").replace(/[\\/:*?"<>|]+/g,"")||"comic")+".zip";a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),8000);b.textContent="⬇ Скачать ZIP";delete b.dataset.busy}
 function names(){TB.concat(SB).forEach(([k])=>{const e=$(`.tab[data-t=${k}],.chip[data-s=${k}]`);if(e)e.textContent=nm(k)});$("#chars h1").textContent=nm("chars");$("#social h1").textContent=nm("social")=="Соцсети"?"Мы в соцсетях":nm("social")}
 function vis(){
- const h=D.hide||{},adm=document.body.classList.contains("admin");
+ const h=D.hide||{},adm=document.body.classList.contains("admin");$("#nw").classList.toggle("hb",!!h.new);
  TB.forEach(([k])=>$(`.tab[data-t=${k}]`).classList.toggle("off",!!h[k]));
  SB.forEach(([k])=>$(`.chip[data-s=${k}]`).classList.toggle("off",!!h[k]));
  D.secs.forEach(x=>{const e=$(`[data-sid="${x.id}"].chip,[data-sid="${x.id}"].tab`);if(e)e.classList.toggle("off",!!h[x.id])});
@@ -252,9 +359,9 @@ const eN=id=>(D.earths.find(x=>x.id==id)||{}).n||"";
 const tg=t=>t?`<span class="tag" style="color:${TC[t]||"var(--mu)"};border-color:${TC[t]||"var(--ln)"}">${esc(t)}</span>`:"";
 function rch(){
  const i=D.chars.findIndex(x=>x.id==CO),c=D.chars[i],B=$("#chbody");
- if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${eN(c.e)?` <span class="tag">${esc(eN(c.e))}</span>`:""}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
+ if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover${sc(c.cv)?" im":""}" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${eN(c.e)?` <span class="tag">${esc(eN(c.e))}</span>`:""}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
  const ph=sc(c.ph)||sc(c.cv),ext=/^data:image\/png|\.png(\?|$)/i.test(ph)?"png":"jpg";
- B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}<dl><dt>Характер</dt><dd>${esc(c.ch)}</dd><dt>Силы</dt><dd>${esc(c.pw)}</dd>${eN(c.e)&&!(D.hide||{}).universes?`<dt>Из какой Земли</dt><dd><button class="go" data-ge="${c.e}">${esc(eN(c.e))} →</button></dd>`:""}</dl><button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
+ B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}${blocks(c)}<button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
 function commit(){try{localStorage.setItem("vuno",JSON.stringify(D))}catch(e){alert("Не удалось сохранить черновик: слишком большие картинки. Используйте ссылки на обложки.")}render()}
 
 function modal(title,fields,vals,ok){
@@ -277,7 +384,7 @@ function editItem(l,n,sid){
  if(l=="site")return modal("Текст главной",FD.site,D.site,o=>{Object.assign(D.site,o);commit()});
  const L=sid?D.secs.find(x=>x.id==sid).items:D[l],isNew=n<0;
  modal(isNew?"Добавить":"Редактировать",l=="items"?FD["i_"+(D.secs.find(x=>x.id==sid).ty||"cards")]:FD[l],isNew?{}:L[n],o=>{
-  if(isNew)L.push({id:uid(),...(l=="secs"?{items:[]}:{}),...o});else Object.assign(L[n],o);commit()});
+  if(isNew)L.push({id:uid(),ts:Date.now(),...(l=="secs"?{items:[]}:{}),...o});else Object.assign(L[n],o);commit()});
 }
 async function H(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("vuno|"+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 function setAdmin(on){document.body.classList.toggle("admin",on);vis();$("#lk").textContent=on?"🔓":"🔒";try{on?sessionStorage.setItem("vuno_a","1"):sessionStorage.removeItem("vuno_a")}catch(e){}}
@@ -298,25 +405,40 @@ document.addEventListener("click",e=>{
   if(a=="del"){if(!confirm("Удалить?"))return;const x=L.splice(n,1)[0];if(l=="projects")D.earths.forEach(z=>z.p=z.p.filter(q=>q!=x.id))}
   return commit()}
  const t=e.target.closest(".tab[data-t]");
- if(t){document.querySelectorAll(".tab[data-t]").forEach(x=>x.classList.toggle("on",x==t));
+ if(t){fx();document.querySelectorAll(".tab[data-t]").forEach(x=>x.classList.toggle("on",x==t));
   ["projects","chars","social","tsec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=t.dataset.t));if(t.dataset.sid){TO=t.dataset.sid;rsec()}return}
  const c=e.target.closest(".chip");
- if(c){document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
+ if(c){fx();document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
   ["list","universes","timeline","sec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));if(c.dataset.sid){SO=c.dataset.sid;rsec()}
   $("#timeline").dataset.v=c.dataset.s=="timeline"?"1":"";return}
+ const ba=e.target.closest("[data-ba]");
+ if(ba){const c=D.chars.find(x=>x.id==CO),a=ba.dataset.ba,k=ba.dataset.bk,L=c.bl||(c.bl=[]),n=L.findIndex(x=>x.id==k);
+  if(a=="add")return modal("Новый блок",[["t","Заголовок блока"],["x","Текст","a"]],{},o=>{L.push({id:uid(),...o});commit()});
+  if(a=="bed")return modal("Изменить блок",[["t","Заголовок блока"],["x","Текст","a"]],L[n],o=>{Object.assign(L[n],o);commit()});
+  if(a=="hide"){c.hd=c.hd||{};c.hd[k]=c.hd[k]?0:1;return commit()}
+  if(a=="bup"&&n>0)[L[n-1],L[n]]=[L[n],L[n-1]];
+  if(a=="bdn"&&n<L.length-1)[L[n+1],L[n]]=[L[n],L[n+1]];
+  if(a=="bdel"){if(!confirm("Удалить блок?"))return;L.splice(n,1)}
+  return commit()}
  const pa=e.target.closest("[data-pa]");
  if(pa){const f=findP(RP),p=f.p,a=pa.dataset.pa,n=+pa.dataset.pi;
-  if(a=="add"){PGQ=[];return modal("Добавить страницы",[["u","Ссылки или пути к страницам, по одной в строке (например img/zenith/1.jpg)","a"],["fm","Или загрузите файлы (названия по порядку: 1, 2, 3…)","f"]],{},o=>{p.pg=(p.pg||[]).concat(o.u.split("\n").map(x=>x.trim()).filter(x=>sc(x)),PGQ);PGQ=[];commit()})}
+  if(a=="add"){PGQ=[];return modal("Добавить страницы",[["u","Ссылки или пути к страницам, по одной в строке (например img/zenith/1.jpg)","a"],["fm","Или загрузите файлы (названия по порядку: 1, 2, 3…)","f"]],{},o=>{p.pg=(p.pg||[]).concat(o.u.split("\n").map(x=>x.trim()).filter(x=>sc(x)),PGQ);p.ts=Date.now();PGQ=[];commit()})}
   if(a=="edit")return editItem(f.l,f.L.indexOf(p),f.x);
+  if(a=="cadd")return modal("Участник",[["r","Работа (сценарист, художник…)"],["n","Имя"]],{},o=>{(p.cr=p.cr||[]).push({id:uid(),...o});commit()});
+  if(a=="ced")return modal("Участник",[["r","Работа"],["n","Имя"]],p.cr[n],o=>{Object.assign(p.cr[n],o);commit()});
+  if(a=="cup"||a=="cdn"){const c=p.cr,m=n+(a=="cup"?-1:1);if(c[m])[c[m],c[n]]=[c[n],c[m]];return commit()}
+  if(a=="cdel"){if(!confirm("Удалить участника?"))return;p.cr.splice(n,1);return commit()}
   const g=p.pg||(p.pg=[]);
   if(a=="up"&&n>0)[g[n-1],g[n]]=[g[n],g[n-1]];
   if(a=="dn"&&n<g.length-1)[g[n+1],g[n]]=[g[n],g[n+1]];
   if(a=="del"){if(!confirm("Удалить страницу?"))return;g.splice(n,1)}
   return commit()}
- if(e.target.closest("[data-rx]")){RP=null;return rd()}
+ if(e.target.closest("[data-zip]"))return dl();
+ if(e.target.closest("[data-rclr]")){RS={};saveRS();rnw();return rrc()}
+ if(e.target.closest("[data-rx]")){RP=null;rd();rnw();return rrc()}
  if(e.target.closest("[data-rt]"))return $("#rd").scrollTo({top:0,behavior:"smooth"});
  const pp=e.target.closest("[data-p]");
- if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){RP=pp.dataset.p;$("#rd").scrollTop=0;return rd()}
+ if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){RP=pp.dataset.p;const sv=RS[RP];RES=sv&&sv.p>1?sv.p:0;seen(RP);$("#rd").scrollTop=0;rd();return rnw()}
  const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;return rch()}
  if(e.target.closest("[data-cback]")){CO=null;return rch()}
  const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
@@ -325,6 +447,7 @@ document.addEventListener("click",e=>{
  const o=e.target.closest("[data-open]");
  if(o&&o.dataset.open&&!e.target.closest(".ctl"))window.open(o.dataset.open,"_blank","noopener");
 });
+$("#th").onclick=()=>{const r=document.documentElement,c=r.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),n=c=="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("vuno_th",n)}catch(e){}};
 $("#lk").onclick=()=>{
  if(document.body.classList.contains("admin"))return;
  modal("Вход для админа",[["pw","Пароль","p"]],{},async o=>{
@@ -336,7 +459,10 @@ const rf=(f,m)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const i
 document.addEventListener("change",e=>{if(!e.target.matches("[data-fm]"))return;
  const fs=[...e.target.files].sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));
  Promise.all(fs.map(f=>rf(f,1100))).then(a=>{PGQ=a;$("#fmc").textContent="Файлов выбрано: "+a.length})});
-document.addEventListener("keydown",e=>{if(e.key=="Escape"&&RP&&$("#md").classList.contains("hide")){RP=null;rd()}});
+let rq;$("#rd").addEventListener("scroll",()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(()=>{const R=$("#rd"),c=$("#pc"),P=[...R.querySelectorAll(".pgw")];if(!c||!P.length)return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});c.textContent="Стр. "+(k+1)+" / "+P.length})});
+let rqf=0;$("#rd").addEventListener("scroll",()=>{if(rqf)return;rqf=1;requestAnimationFrame(()=>{rqf=0;const e=$("#rpg"),R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!e||!P.length)return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});e.textContent=(k+1)+" / "+P.length})},{passive:true});
+let sT;$("#rd").addEventListener("scroll",()=>{if(!RP||!RS[RP]||!TRK)return;clearTimeout(sT);sT=setTimeout(()=>{const R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!P.length||!RS[RP])return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});RS[RP].p=k+1;RS[RP].t=Date.now();saveRS()},300)});
+document.addEventListener("keydown",e=>{if(e.key=="Escape"&&RP&&$("#md").classList.contains("hide")){RP=null;rd();rnw();rrc()}});
 document.addEventListener("dblclick",e=>{
  if(!document.body.classList.contains("admin"))return;
  const t=e.target.closest(".tab[data-t],.chip");if(!t)return;
@@ -346,7 +472,7 @@ document.addEventListener("dblclick",e=>{
 });
 $("#nb").onclick=()=>{const K=[...TB,...SB];modal("Названия вкладок",K.map(([k,l])=>[k,"Вместо «"+l+"»"]),Object.fromEntries(K.map(([k])=>[k,nm(k)])),o=>{D.names={};K.forEach(([k])=>{const v=o[k].trim();if(v&&v!=DEFN[k])D.names[k]=v});commit()})};
 $("#lo").onclick=()=>setAdmin(false);
-$("#vb").onclick=()=>{const A=[...[...TB,...SB].map(([k])=>[k,nm(k)]),...D.secs.map(x=>[x.id,x.n])];modal("Какие вкладки показывать",[["p","Показывать","m",()=>A]],{p:A.map(x=>x[0]).filter(k=>!(D.hide||{})[k])},o=>{D.hide={};A.forEach(([k])=>{if(!o.p.includes(k))D.hide[k]=1});commit()})};
+$("#vb").onclick=()=>{const A=[...[...TB,...SB].map(([k])=>[k,nm(k)]),["new","Новинки (лента сверху)"],...D.secs.map(x=>[x.id,x.n])];modal("Какие вкладки показывать",[["p","Показывать","m",()=>A]],{p:A.map(x=>x[0]).filter(k=>!(D.hide||{})[k])},o=>{D.hide={};A.forEach(([k])=>{if(!o.p.includes(k))D.hide[k]=1});commit()})};
 $("#ex").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,1)],{type:"application/json"}));a.download="data.json";a.click()};
 $("#im").onclick=()=>$("#imf").click();
 $("#imf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.projects))throw 0;D=fix(d);commit()}catch(x){alert("Неверный файл data.json")}};r.readAsText(f)};
@@ -356,7 +482,9 @@ const fix=d=>({site:d.site||DEF.site,projects:d.projects||[],earths:d.earths||[]
  let d=DEF;
  try{const r=await fetch("data.json",{cache:"no-store"});if(r.ok)d=await r.json()}catch(e){}
  try{const s=localStorage.getItem("vuno");if(s)d=JSON.parse(s)}catch(e){}
- D=fix(d);render();
+ try{RS=JSON.parse(localStorage.getItem("vuno_rs")||"{}")||{}}catch(e){}
+ try{SN=JSON.parse(localStorage.getItem("vuno_sn")||"{}")||{}}catch(e){}Object.keys(RS).forEach(k=>SN[k]=1);
+ D=fix(d);render();fx();
  try{if(sessionStorage.getItem("vuno_a"))setAdmin(true)}catch(e){}
 })();
 </script>
