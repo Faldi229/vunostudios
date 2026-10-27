@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@900&family=Fira+Sans+Condensed:wght@400;600&display=swap" rel="stylesheet">
 <script>try{var t=localStorage.getItem("vuno_th");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-:root{--bg:#f1f8f4;--sf:#fff;--tx:#10201a;--mu:#5b7568;--ac:#15a34a;--ac2:#65a30d;--ln:#d5e8dc;--ink:#10201a;--sh:#4ade80}
+:root{--bg:#e7eee8;--sf:#f5f8f3;--tx:#1a2a21;--mu:#586b5f;--ac:#168343;--ac2:#5f8f1a;--ln:#ccdace;--ink:#223329;--sh:#a6d5b3}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#34d399;--sh:#065f46;--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding-bottom:70px}
@@ -73,7 +73,7 @@ body.admin .adm{display:flex!important}
 @keyframes shine{to{background-position:-200% 0}}
 @keyframes up{from{opacity:0;transform:translateY(16px)}}
 @keyframes drift{to{transform:translate(4%,3%) scale(1.1)}}
-body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.2),transparent 40%),radial-gradient(circle at 80% 70%,rgba(132,204,22,.15),transparent 40%);animation:drift 16s ease-in-out infinite alternate}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.12),transparent 40%),radial-gradient(circle at 80% 70%,rgba(132,204,22,.09),transparent 40%);animation:drift 16s ease-in-out infinite alternate}
 .hero h1{animation:up .7s backwards}.hero p{animation:up .7s .15s backwards}
 .card,.ev,.erow,.cd{animation:up .5s backwards}
 .grid>:nth-child(2),.ev:nth-child(2),.erow:nth-child(2){animation-delay:.07s}
@@ -108,7 +108,7 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
 :root[data-theme="light"]{color-scheme:light}
 body{font-family:"UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:18px}
 h1,h2,h3,h4,.logo,.tab,.chip,.dl,.go,.add,.mini,.ev b,.cover span,.nwb,.sh,.back,#bar b{font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;letter-spacing:.02em;text-transform:uppercase}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(34,197,94,.22) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(34,197,94,.13) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
 header{position:sticky;top:0;z-index:15;background:var(--sf);padding-top:calc(14px + env(safe-area-inset-top,0px));border-bottom:3px solid var(--ink);box-shadow:0 4px 0 var(--sh)}
 .logo{font-size:2rem}
 .tab,.chip{border:2px solid var(--ink);color:var(--tx);background:var(--sf);box-shadow:3px 3px 0 var(--sh);font-size:1.05rem}
@@ -156,6 +156,14 @@ button.dl{border:3px solid var(--ink);cursor:pointer;font-size:1.1rem;margin:0 0
 .rfl button,.rfl span{background:var(--sf);color:var(--tx);border:2px solid var(--ink);border-radius:99px;padding:6px 14px;box-shadow:3px 3px 0 var(--sh);font-family:inherit;font-weight:900;text-transform:uppercase;font-size:1rem;cursor:pointer}
 .rfl span{cursor:default}
 button.dl{border:0;cursor:pointer;font-size:1.05rem;margin:0 0 16px}
+.sub.hb{display:none}body.admin .sub.hb{display:flex;opacity:.6}
+.tag.hb{display:none}body.admin .tag.hb{display:inline-block;opacity:.45}
+.pgw img{opacity:0;transition:opacity .5s}.pgw img.ld{opacity:1}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.md .box{animation:pop .22s}
+body .cd.ani{animation:up .4s backwards}body .cd.ani .blk{animation:up .4s .1s backwards}
+.tab:active,.chip:active,.go:active,.add:active,.mini:active,.dl:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sh)}
+.pbar i{transition:width .6s}
 </style>
 </head>
 <body>
@@ -176,8 +184,6 @@ button.dl{border:0;cursor:pointer;font-size:1.05rem;margin:0 0 16px}
     <div id="nw" class="nwrap"></div>
     <div class="sub">
       <button class="chip on" data-s="list">Мои проекты</button>
-      <button class="chip" data-s="universes">Вселенные</button>
-      <button class="chip" data-s="timeline">Хронология (что читать)</button>
       <span id="xc" style="display:contents"></span>
       <button class="mini adm" data-a="add" data-l="secs">+ Раздел</button>
     </div>
@@ -231,12 +237,12 @@ const DEF={
 };
 const FD={
  site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
- projects:[["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)"],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]]],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
+ projects:[["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)"],["eu","Земля / вселенная (впишите или выберите из прошлых)","dl",()=>EUS()],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]]],["d","Описание","a"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
  reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["pr","Проект, который откроется по клику","s",()=>PO()],["dt","Дата выхода","d"]],
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
  secs:[["n","Название раздела"],["w","Где разместить","s",()=>[["sub","Внутри «Проекты» (ряд вкладок)"],["top","Главное меню"]]],["ty","Тип раздела","s",()=>TYS],["t","Текст над содержимым (необязательно)","a"],["tx","Текст (для типа «Текст»)","a"]],
- chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","a"],["pw","Силы","a"],["e","Из какой Земли","s",()=>[["","—"],...D.earths.map(x=>[x.id,x.n])]]]
+ chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","a"],["pw","Силы","a"],["eu","Из какой Земли (впишите или выберите из прошлых)","dl",()=>EUS()]]
 };
 FD.i_cards=FD.projects;FD.i_timeline=FD.reading;FD.i_links=FD.soc;
 const G=["linear-gradient(135deg,#059669,#84cc16)","linear-gradient(135deg,#0d9488,#22c55e)","linear-gradient(135deg,#15803d,#a3e635)","linear-gradient(135deg,#065f46,#34d399)"];
@@ -248,7 +254,7 @@ const sc=u=>/^(https?:\/\/|data:image\/|[^"'<>:\\\n]+\.(png|jpe?g|webp|gif|avif)
 const uid=()=>Math.random().toString(36).slice(2,8);
 const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
 const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
-const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
+const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}${p.eu?` <span class="tag">🌍 ${esc(p.eu)}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
@@ -261,10 +267,10 @@ function render(){
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
  $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();names();vis();rd();
 }
-const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"],["universes","Вселенные"],["timeline","Хронология (что читать)"]];
+const TB=[["projects","Проекты"],["chars","Персонажи"],["social","Соцсети"]],SB=[["list","Мои проекты"]];
 const DEFN=Object.fromEntries([...TB,...SB]),nm=k=>(D.names||{})[k]||DEFN[k];
 const fd=v=>{const d=new Date(v+"T00:00:00");if(isNaN(d))return esc(v);return"📅 "+d.toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"})+(d>new Date()?" · скоро":"")};
-function rxc(){
+function rxc(){$(".sub").classList.toggle("hb",!D.secs.some(x=>x.w!="top"));
  const sh=!$("#sec").classList.contains("hide");
  if(sh&&!D.secs.some(x=>x.id==SO&&x.w!="top"))$(".chip[data-s=list]").click();
  $("#xc").innerHTML=D.secs.filter(x=>x.w!="top").map(x=>`<button class="chip${sh&&SO==x.id?" on":""}" data-s="sec" data-sid="${x.id}">${esc(x.n)}</button>`).join("");
@@ -272,6 +278,9 @@ function rxc(){
  if(th&&!D.secs.some(x=>x.id==TO&&x.w=="top"))$(".tab[data-t=projects]").click();
  $("#xt").innerHTML=D.secs.filter(x=>x.w=="top").map(x=>`<button class="tab${th&&TO==x.id?" on":""}" data-t="tsec" data-sid="${x.id}">${esc(x.n)}</button>`).join("")}
 const PO=()=>[["","— не выбран —"],...D.projects.map(p=>["projects::"+p.id,p.n]),...D.secs.filter(s=>(s.ty||"cards")=="cards").flatMap(s=>s.items.map(p=>["items:"+s.id+":"+p.id,p.n+" ("+s.n+")"]))];
+const EUS=()=>[...new Set([...D.projects,...D.chars,...D.secs.flatMap(q=>q.items||[])].map(x=>x.eu).filter(Boolean))];
+const ET=c=>{const ea=c.eu||eN(c.e),hid=c.hd&&c.hd.e;return ea&&(!hid||document.body.classList.contains("admin"))?` <span class="tag${hid?" hb":""}">🌍 ${esc(ea)}</span>`:""};
+let CF=0;
 const TYS=[["cards","Карточки (как проекты)"],["timeline","Хронология / порядок"],["links","Ссылки (как соцсети)"],["text","Текст"]];
 function rsec(){
  for(const[id,v,T]of[["#sec",SO,0],["#tsb",TO,1]]){const i=D.secs.findIndex(x=>x.id==v&&(x.w=="top")==!!T);$(id).innerHTML=i<0?"":secBody(D.secs[i],i)}}
@@ -285,18 +294,18 @@ function secBody(s,i){
 function findP(r){const[l,x,id]=(r||"").split(":");const L=x?(D.secs.find(q=>q.id==x)||{}).items:D[l];return{L,l,x,p:(L||[]).find(q=>q.id==id)}}
 function rd(){
  const R=$("#rd");
- if(!RP){R.classList.add("hide");document.body.style.overflow="";return}
+ if(!RP){R.classList.add("hide");document.body.style.overflow="";if(location.hash.startsWith("#c="))try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}return}
  const f=findP(RP),p=f.p;
  if(!p){RP=null;return rd()}
  const pg=p.pg||[];
- R.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-rx>← На главную</button><span id="pc" style="color:var(--mu);font-weight:600">Страниц: ${pg.length}</span>${(RS[RP]||{}).p>1?`<button class="go" data-rt>↺ С начала</button>`:""}</div>
-<h1>${esc(p.n)}</h1>${p.s||p.dt||p.fm||p.rt||p.ag?`<div style="margin-bottom:12px">${p.fm?`<span class="tag">${esc(p.fm)}</span> `:""}${p.s?`<span class="tag">${esc(p.s)}</span> `:""}${p.dt?`<span class="tag">${fd(p.dt)}</span> `:""}${p.rt?`<span class="tag">★ ${esc(p.rt)}</span> `:""}${p.ag?`<span class="tag">${esc(p.ag)}</span>`:""}</div>`:""}
+ R.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-rx>← На главную</button><button class="go" data-sh>🔗 Поделиться</button><span id="pc" style="color:var(--mu);font-weight:600">Страниц: ${pg.length}</span>${(RS[RP]||{}).p>1?`<button class="go" data-rt>↺ С начала</button>`:""}</div>
+<h1>${esc(p.n)}</h1>${p.s||p.dt||p.fm||p.rt||p.ag||p.eu?`<div style="margin-bottom:12px">${p.fm?`<span class="tag">${esc(p.fm)}</span> `:""}${p.s?`<span class="tag">${esc(p.s)}</span> `:""}${p.dt?`<span class="tag">${fd(p.dt)}</span> `:""}${p.rt?`<span class="tag">★ ${esc(p.rt)}</span> `:""}${p.ag?`<span class="tag">${esc(p.ag)}</span> `:""}${p.eu?`<span class="tag">🌍 ${esc(p.eu)}</span>`:""}</div>`:""}
 ${p.d?`<p class="rdesc">${esc(p.d)}</p>`:""}
 ${(p.cr||[]).length?`<div class="crw">${p.cr.map((c,k)=>`<div class="cr"><small>${esc(c.r)}</small><b>${esc(c.n)}</b><div class="ctl adm">${[["cup","↑"],["cdn","↓"],["ced","✎"],["cdel","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")}</div>`:""}
 ${pg.length&&!p.nz?`<button class="dl" id="zb" data-zip>⬇ Скачать ZIP</button>`:""}
 <div class="adm" style="gap:6px;flex-wrap:wrap;margin:10px 0"><button class="mini" data-pa="edit">✎ Изменить проект</button><button class="mini" data-pa="add">+ Добавить страницы</button><button class="mini" data-pa="cadd">+ Участник</button></div>
-${pg.map((src,k)=>`<div class="pgw"><img src="${esc(sc(src))}" loading="${k<RES?"eager":"lazy"}" alt="Страница ${k+1}"><div class="ctl adm">${[["up","↑"],["dn","↓"],["del","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")||`<p style="color:var(--mu)">Страниц пока нет.</p>`}
-<div class="rfl">${pg.length?`<span id="rpg">1 / ${pg.length}</span><button data-rt>↑</button>`:""}<button data-rx>✕ Выйти</button></div><div class="rb" style="margin-top:24px"><button class="fab" data-rt>↑</button><button class="go" data-rt>↑ Наверх</button><button class="go" data-rx>← На главную</button></div></div>`;
+${pg.map((src,k)=>`<div class="pgw"><img src="${esc(sc(src))}" loading="${k<RES?"eager":"lazy"}" alt="Страница ${k+1}" onload="this.classList.add('ld')" onerror="this.classList.add('ld')"><div class="ctl adm">${[["up","↑"],["dn","↓"],["del","✕"]].map(([a,t])=>`<button data-pa="${a}" data-pi="${k}">${t}</button>`).join("")}</div></div>`).join("")||`<p style="color:var(--mu)">Страниц пока нет.</p>`}
+<div class="rfl">${pg.length?`<span id="rpg">1 / ${pg.length}</span><button data-rt>↑</button>`:""}<button data-rx>✕ Выйти</button></div><div class="rb" style="margin-top:24px"><button class="go" data-rt>↑ Наверх</button><button class="go" data-rx>← На главную</button></div></div>`;
  R.classList.remove("hide");document.body.style.overflow="hidden";
  if(RES>1){const n=RES;RES=0;TRK=0;Promise.all([...R.querySelectorAll(".pgw img")].slice(0,n).map(x=>x.complete?1:new Promise(r=>{x.onload=x.onerror=r}))).then(()=>{const t=R.querySelectorAll(".pgw")[n-1];if(t)R.scrollTop=t.offsetTop-60;setTimeout(()=>TRK=1,500)})}else TRK=1;
 }
@@ -305,7 +314,7 @@ function blocks(c){
  const bc=(k,cu)=>`<div class="bc adm"><button data-ba="hide" data-bk="${k}">${hd[k]?"👁 Показать":"🙈 Скрыть"}</button>${cu?`<button data-ba="bed" data-bk="${k}">✎</button><button data-ba="bup" data-bk="${k}">↑</button><button data-ba="bdn" data-bk="${k}">↓</button><button data-ba="bdel" data-bk="${k}">✕</button>`:""}</div>`;
  const B=(k,t,body,cu,ok)=>`<div class="blk${hd[k]||!ok?" hb":""}"><h4>${esc(t)}</h4><div class="bt">${body}</div>${bc(k,cu)}</div>`;
  let h=B("ch","Характер",esc(c.ch),0,c.ch)+B("pw","Силы",esc(c.pw),0,c.pw);
- if(eN(c.e)&&!(D.hide||{}).universes)h+=B("e","Из какой Земли",`<button class="go" data-ge="${c.e}">${esc(eN(c.e))} →</button>`,0,1);
+ {const ea=c.eu||eN(c.e);if(ea)h+=B("e","Из какой Земли",esc(ea),0,1)}
  h+=(c.bl||[]).map(b=>B(b.id,b.t,esc(b.x),1,b.t||b.x)).join("");
  return h+`<button class="add adm" data-ba="add">+ Добавить блок</button>`}
 function rnw(){
@@ -345,6 +354,9 @@ async function dl(){
  }catch(e){b.textContent="⬇ Скачать ZIP";delete b.dataset.busy;return alert("Не удалось скачать страницу "+(fl.length+1)+". ZIP работает для страниц, которые лежат на этом же сайте (пути вроде img/…) или загружены файлом, а не для чужих ссылок.")}
  const a=document.createElement("a");a.href=URL.createObjectURL(zip(fl));a.download=((p.n||"comic").replace(/[\\/:*?"<>|]+/g,"")||"comic")+".zip";a.click();
  setTimeout(()=>URL.revokeObjectURL(a.href),8000);b.textContent="⬇ Скачать ZIP";delete b.dataset.busy}
+function refById(id){if(D.projects.some(p=>p.id==id))return"projects::"+id;for(const q of D.secs)if((q.items||[]).some(p=>p.id==id))return"items:"+q.id+":"+id;return""}
+function openP(r){RP=r;const sv=RS[r];RES=sv&&sv.p>1?sv.p:0;seen(r);const h="#c="+r.split(":")[2];if(location.hash!=h)try{history.replaceState(null,"",h)}catch(e){}$("#rd").scrollTop=0;rd();rnw()}
+function openFromHash(h=location.hash){if(!h.startsWith("#c="))return;const r=refById(decodeURIComponent(h.slice(3)));if(r&&r!=RP)openP(r)}
 function names(){TB.concat(SB).forEach(([k])=>{const e=$(`.tab[data-t=${k}],.chip[data-s=${k}]`);if(e)e.textContent=nm(k)});$("#chars h1").textContent=nm("chars");$("#social h1").textContent=nm("social")=="Соцсети"?"Мы в соцсетях":nm("social")}
 function vis(){
  const h=D.hide||{},adm=document.body.classList.contains("admin");$("#nw").classList.toggle("hb",!!h.new);
@@ -359,15 +371,16 @@ const eN=id=>(D.earths.find(x=>x.id==id)||{}).n||"";
 const tg=t=>t?`<span class="tag" style="color:${TC[t]||"var(--mu)"};border-color:${TC[t]||"var(--ln)"}">${esc(t)}</span>`:"";
 function rch(){
  const i=D.chars.findIndex(x=>x.id==CO),c=D.chars[i],B=$("#chbody");
- if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover${sc(c.cv)?" im":""}" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${eN(c.e)?` <span class="tag">${esc(eN(c.e))}</span>`:""}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
+ if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover${sc(c.cv)?" im":""}" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${ET(c)}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
  const ph=sc(c.ph)||sc(c.cv),ext=/^data:image\/png|\.png(\?|$)/i.test(ph)?"png":"jpg";
- B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}${blocks(c)}<button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
+ B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd${CF?" ani":""}">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}${blocks(c)}<button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
 function commit(){try{localStorage.setItem("vuno",JSON.stringify(D))}catch(e){alert("Не удалось сохранить черновик: слишком большие картинки. Используйте ссылки на обложки.")}render()}
 
 function modal(title,fields,vals,ok){
  $("#mt").textContent=title;
  $("#mf").innerHTML=fields.map(([k,lb,t,op])=>{const v=vals[k]??(t=="m"?[]:"");
   if(t=="m")return `<label>${lb}</label><div class="chk">${(op?op():D.projects.map(p=>[p.id,p.n])).map(([id,n])=>`<label class="ck"><input type="checkbox" value="${esc(id)}" ${v.includes(id)?"checked":""}>${esc(n)}</label>`).join("")}</div>`;
+  if(t=="dl")return `<label>${lb}</label><input data-k="${k}" list="dl_${k}" value="${esc(v)}"><datalist id="dl_${k}">${op().map(x=>`<option value="${esc(x)}">`).join("")}</datalist>`;
   if(t=="s")return `<label>${lb}</label><select data-k="${k}">${op().map(([x,y])=>`<option value="${esc(x)}" ${x==v?"selected":""}>${esc(y)}</option>`).join("")}</select>`;
   if(t=="f")return `<label>${lb}</label><input type="file" accept="image/*" multiple data-fm style="margin-top:6px"><div id="fmc" style="color:var(--mu);font-size:.85rem;margin-top:4px"></div>`;
   if(t=="a")return `<label>${lb}</label><textarea data-k="${k}" rows="3">${esc(v)}</textarea>`;
@@ -387,7 +400,7 @@ function editItem(l,n,sid){
   if(isNew)L.push({id:uid(),ts:Date.now(),...(l=="secs"?{items:[]}:{}),...o});else Object.assign(L[n],o);commit()});
 }
 async function H(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("vuno|"+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
-function setAdmin(on){document.body.classList.toggle("admin",on);vis();$("#lk").textContent=on?"🔓":"🔒";try{on?sessionStorage.setItem("vuno_a","1"):sessionStorage.removeItem("vuno_a")}catch(e){}}
+function setAdmin(on){document.body.classList.toggle("admin",on);vis();rch();$("#lk").textContent=on?"🔓":"🔒";try{on?sessionStorage.setItem("vuno_a","1"):sessionStorage.removeItem("vuno_a")}catch(e){}}
 
 document.addEventListener("change",e=>{
  if(!e.target.matches("[data-f]")||!e.target.files[0])return;
@@ -434,12 +447,14 @@ document.addEventListener("click",e=>{
   if(a=="del"){if(!confirm("Удалить страницу?"))return;g.splice(n,1)}
   return commit()}
  if(e.target.closest("[data-zip]"))return dl();
+ if(e.target.closest("[data-sh]")){const u=location.href.split("#")[0]+"#c="+RP.split(":")[2];
+  return(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>alert("Ссылка на комикс скопирована:\n"+u)).catch(()=>prompt("Скопируйте ссылку:",u))}
  if(e.target.closest("[data-rclr]")){RS={};saveRS();rnw();return rrc()}
  if(e.target.closest("[data-rx]")){RP=null;rd();rnw();return rrc()}
  if(e.target.closest("[data-rt]"))return $("#rd").scrollTo({top:0,behavior:"smooth"});
  const pp=e.target.closest("[data-p]");
- if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){RP=pp.dataset.p;const sv=RS[RP];RES=sv&&sv.p>1?sv.p:0;seen(RP);$("#rd").scrollTop=0;rd();return rnw()}
- const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;return rch()}
+ if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){openP(pp.dataset.p);return}
+ const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;CF=1;rch();CF=0;return}
  if(e.target.closest("[data-cback]")){CO=null;return rch()}
  const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
  const er=e.target.closest("[data-e]");if(er){EO=er.dataset.e;return render()}
@@ -460,6 +475,7 @@ document.addEventListener("change",e=>{if(!e.target.matches("[data-fm]"))return;
  const fs=[...e.target.files].sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));
  Promise.all(fs.map(f=>rf(f,1100))).then(a=>{PGQ=a;$("#fmc").textContent="Файлов выбрано: "+a.length})});
 let rq;$("#rd").addEventListener("scroll",()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(()=>{const R=$("#rd"),c=$("#pc"),P=[...R.querySelectorAll(".pgw")];if(!c||!P.length)return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});c.textContent="Стр. "+(k+1)+" / "+P.length})});
+window.addEventListener("hashchange",()=>{if(location.hash.startsWith("#c="))openFromHash();else if(RP){RP=null;rd();rnw();rrc()}});
 let rqf=0;$("#rd").addEventListener("scroll",()=>{if(rqf)return;rqf=1;requestAnimationFrame(()=>{rqf=0;const e=$("#rpg"),R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!e||!P.length)return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});e.textContent=(k+1)+" / "+P.length})},{passive:true});
 let sT;$("#rd").addEventListener("scroll",()=>{if(!RP||!RS[RP]||!TRK)return;clearTimeout(sT);sT=setTimeout(()=>{const R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!P.length||!RS[RP])return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});RS[RP].p=k+1;RS[RP].t=Date.now();saveRS()},300)});
 document.addEventListener("keydown",e=>{if(e.key=="Escape"&&RP&&$("#md").classList.contains("hide")){RP=null;rd();rnw();rrc()}});
@@ -484,7 +500,7 @@ const fix=d=>({site:d.site||DEF.site,projects:d.projects||[],earths:d.earths||[]
  try{const s=localStorage.getItem("vuno");if(s)d=JSON.parse(s)}catch(e){}
  try{RS=JSON.parse(localStorage.getItem("vuno_rs")||"{}")||{}}catch(e){}
  try{SN=JSON.parse(localStorage.getItem("vuno_sn")||"{}")||{}}catch(e){}Object.keys(RS).forEach(k=>SN[k]=1);
- D=fix(d);render();fx();
+ const H0=location.hash;D=fix(d);render();fx();openFromHash(H0);
  try{if(sessionStorage.getItem("vuno_a"))setAdmin(true)}catch(e){}
 })();
 </script>
