@@ -176,6 +176,9 @@ body:not(.in) nav .tab[data-t]:not([data-t=home]):not([data-t=hnews]),body:not(.
 .hrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
 .hc{background:var(--sf);color:var(--tx);border:2px solid var(--ink);border-radius:99px;padding:7px 16px;box-shadow:3px 3px 0 var(--sh);font-size:1.05rem;cursor:pointer;font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
 .hc.on{background:var(--ac);color:#fff}
+#gm{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);animation:up .3s}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:0 0 18px}
+.shots img{width:100%;height:auto;border-radius:8px;border:2px solid var(--ink)}
 </style>
 </head>
 <body>
@@ -232,6 +235,7 @@ body:not(.in) nav .tab[data-t]:not([data-t=home]):not([data-t=hnews]),body:not(.
   <button id="lo">Выйти</button>
 </div>
 <div id="rd" class="hide"></div>
+<div id="gm" class="hide"></div>
 <div id="md" class="md hide"><div class="box"><h3 id="mt"></h3><div id="mf"></div>
   <div class="row"><button id="mc">Отмена</button><button id="ms" class="pri">Сохранить</button></div></div></div>
 
@@ -258,7 +262,8 @@ const DEF={
 };
 const FD={
  site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
- projects:[["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)"],["eu","Земля / вселенная (впишите или выберите из прошлых)","dl",()=>EUS()],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]]],["d","Описание","r"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"]],
+ projects:[["ty","Тип карточки","s",()=>[["comic","Комикс"],["game","Игра"]]],["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)","",null,"comic"],["eu","Земля / вселенная (впишите или выберите из прошлых)","dl",()=>EUS()],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]],"comic"],["d","Описание","r"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"],
+  ["dl","Ссылка для скачивания (itch.io)","",null,"game"],["gn","Жанр","",null,"game"],["pf","Платформы (Windows, Android…)","",null,"game"],["v","Версия","",null,"game"],["pr","Цена (например Бесплатно)","",null,"game"],["sh","Скриншоты: ссылки или пути, по одной в строке","a",null,"game"],["crt","Команда: по строке «Роль — Имя»","a",null,"game"]],
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
  reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["pr","Проект, который откроется по клику","s",()=>PO()],["dt","Дата выхода","d"]],
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
@@ -277,7 +282,7 @@ const sc=u=>/^(https?:\/\/|data:image\/|[^"'<>:\\\n]+\.(png|jpe?g|webp|gif|avif)
 const uid=()=>Math.random().toString(36).slice(2,8);
 const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
 const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
-const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}${p.eu?` <span class="tag">🌍 ${esc(p.eu)}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
+const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}${p.eu?` <span class="tag">🌍 ${esc(p.eu)}</span>`:""}${p.ty=="game"?` <span class="tag">🎮 ${esc(p.gn||"Игра")}</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
@@ -288,7 +293,7 @@ function render(){
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
- $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();names();vis();rd();
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();rg();names();vis();rd();
 }
 const TB=[["projects","Проекты"],["news","Новости"],["chars","Персонажи"]],SB=[["list","Мои проекты"]];
 const DEFN=Object.fromEntries([...TB,...SB]),nm=k=>(D.names||{})[k]||DEFN[k];
@@ -379,7 +384,7 @@ async function dl(){
  const a=document.createElement("a");a.href=URL.createObjectURL(zip(fl));a.download=((p.n||"comic").replace(/[\\/:*?"<>|]+/g,"")||"comic")+".zip";a.click();
  setTimeout(()=>URL.revokeObjectURL(a.href),8000);b.textContent="⬇ Скачать ZIP";delete b.dataset.busy}
 function refById(id){if(D.projects.some(p=>p.id==id))return"projects::"+id;for(const q of D.secs)if((q.items||[]).some(p=>p.id==id))return"items:"+q.id+":"+id;return""}
-function openP(r){RP=r;const sv=RS[r];RES=sv&&sv.p>1?sv.p:0;seen(r);const h="#c="+r.split(":")[2];if(location.hash!=h)try{history.replaceState(null,"",h)}catch(e){}$("#rd").scrollTop=0;rd();rnw()}
+function openP(r){const q0=findP(r).p;if(q0&&q0.ty=="game"){sn(r);openG(r);rnw();return}RP=r;const sv=RS[r];RES=sv&&sv.p>1?sv.p:0;seen(r);const h="#c="+r.split(":")[2];if(location.hash!=h)try{history.replaceState(null,"",h)}catch(e){}$("#rd").scrollTop=0;rd();rnw()}
 function openFromHash(h=location.hash){if(!h.startsWith("#c="))return;const r=refById(decodeURIComponent(h.slice(3)));if(r&&r!=RP)openP(r)}
 const FN=[["Основной",'"UrwDinSC","UrwDin","Fira Sans Condensed",sans-serif'],["Заголовочный",'"UrwDinBlack","Fira Sans Extra Condensed",sans-serif'],["Arial","Arial,sans-serif"],["Georgia (с засечками)","Georgia,serif"],["Courier (моно)",'"Courier New",monospace'],["Comic Sans",'"Comic Sans MS",cursive']];
 const OKT=new Set(["B","STRONG","I","EM","U","S","STRIKE","BR","P","DIV","SPAN","UL","OL","LI","H1","H2","H3","A","IMG","BLOCKQUOTE","FONT","SUB","SUP"]);
@@ -456,6 +461,17 @@ function goHub(h){
  const t=g.startsWith("tab:")?g.slice(4):"projects";
  ($(`.tab[data-t=${t}]`)||$(".tab[data-t=projects]")).click()}
 $(".logo").onclick=()=>$(".tab[data-t=home]").click();
+let GP=null;
+function openG(r){GP=r;$("#gm").scrollTop=0;rg()}
+function rg(){
+ const Q=$("#gm"),f=GP?findP(GP):{},h=f.p;
+ if(!h||h.ty!="game"){GP=null;Q.classList.add("hide");if(!RP)document.body.style.overflow="";return}
+ const tags=[h.gn&&"🎮 "+h.gn,h.pf,h.s,h.dt&&fd(h.dt),h.ag,h.v&&"v"+h.v,h.pr,h.rt&&"★ "+h.rt,h.eu&&"🌍 "+h.eu].filter(Boolean);
+ const shots=(h.sh||"").split("\n").map(x=>x.trim()).filter(x=>sc(x));
+ const cr=(h.crt||"").split("\n").map(x=>x.trim()).filter(Boolean).map(l=>{const m=l.match(/^(.*?)\s*(?:—|–|:|\s-\s)\s*(.+)$/);return m?[m[1],m[2]]:["",l]});
+ const u=su(h.dl);
+ Q.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-gx>← На главную</button></div>${sc(h.cv)?`<div class="phw"><img src="${esc(sc(h.cv))}" alt="${esc(h.n)}"></div>`:""}<h1 style="margin-top:14px">${esc(h.n)}</h1><div style="margin-bottom:12px">${tags.map(x=>`<span class="tag">${esc(x)}</span> `).join("")}</div>${u?`<a class="dl" href="${esc(u)}" target="_blank" rel="noopener">⬇ Скачать на itch.io</a>`:`<p class="adm" style="color:var(--mu)">Ссылка для скачивания не указана</p>`}${h.d?`<div class="rdesc rich">${RT(h.d)}</div>`:""}${shots.length?`<div class="shots">${shots.map((x,k)=>`<img src="${esc(x)}" loading="lazy" alt="Скриншот ${k+1}">`).join("")}</div>`:""}${cr.length?`<div class="crw">${cr.map(([r,n])=>`<div class="cr">${r?`<small>${esc(r)}</small>`:""}<b>${esc(n)}</b></div>`).join("")}</div>`:""}<div class="adm" style="gap:6px;margin:10px 0"><button class="mini" data-a="edit" data-l="${f.l}" data-i="${f.L.indexOf(h)}"${f.x?` data-sid="${f.x}"`:""}>✎ Изменить игру</button></div><div class="rb" style="margin-top:24px"><button class="go" data-gx>← На главную</button></div></div><div class="rfl"><button data-gx>✕ Выйти</button></div>`;
+ Q.classList.remove("hide");document.body.style.overflow="hidden"}
 function names(){TB.concat(SB).forEach(([k])=>{const e=$(`.tab[data-t=${k}],.chip[data-s=${k}]`);if(e)e.textContent=nm(k)});$("#chars h1").textContent=nm("chars");$("#news h1").textContent=nm("news");$("#social h1").textContent=nm("social")=="Соцсети"?"Мы в соцсетях":nm("social")}
 function vis(){
  const h=D.hide||{},adm=document.body.classList.contains("admin");$("#nw").classList.toggle("hb",!!h.new);$(".tab[data-t=hnews]").classList.toggle("off",!!h.news);
@@ -477,7 +493,7 @@ function commit(){try{localStorage.setItem("vuno",JSON.stringify(D))}catch(e){al
 
 function modal(title,fields,vals,ok){
  $("#mt").textContent=title;
- $("#mf").innerHTML=fields.map(([k,lb,t,op])=>{const v=vals[k]??(t=="m"?[]:"");
+ $("#mf").innerHTML=fields.map(F=>{const only=F[4],h=(([k,lb,t,op])=>{const v=vals[k]??(t=="m"?[]:"");
   if(t=="m")return `<label>${lb}</label><div class="chk">${(op?op():D.projects.map(p=>[p.id,p.n])).map(([id,n])=>`<label class="ck"><input type="checkbox" value="${esc(id)}" ${v.includes(id)?"checked":""}>${esc(n)}</label>`).join("")}</div>`;
   if(t=="dl")return `<label>${lb}</label><input data-k="${k}" list="dl_${k}" value="${esc(v)}"><datalist id="dl_${k}">${op().map(x=>`<option value="${esc(x)}">`).join("")}</datalist>`;
   if(t=="r")return `<label>${lb}</label><div class="tb"><select data-tb="fn"><option value="">Шрифт</option>${FN.map(([a,b])=>`<option value="${esc(b)}">${a}</option>`).join("")}</select><select data-tb="fs"><option value="">Размер</option>${[12,14,16,18,20,24,28,32,40,48].map(x=>`<option value="${x}">${x}</option>`).join("")}</select><button data-tc="bold"><b>Ж</b></button><button data-tc="italic"><i>К</i></button><button data-tc="underline"><u>Ч</u></button><button data-tc="strikeThrough"><s>З</s></button><input type="color" data-tb="fc" value="#16a34a" title="Цвет текста"><button data-tc="justifyLeft">⇤</button><button data-tc="justifyCenter">↔</button><button data-tc="justifyRight">⇥</button><button data-tc="insertUnorderedList">• Список</button><button data-tc="insertOrderedList">1. Список</button><button data-tc="h2">Заголовок</button><button data-tc="p">Обычный</button><button data-tc="img">🖼 Фото</button><button data-tc="imgurl">🖼 По ссылке</button><button data-tc="link">🔗</button><button data-tc="clear">⌫</button><input type="file" id="rtf" accept="image/*" hidden></div><div id="rte" class="rte" contenteditable="true" data-k="${k}">${RT(v)}</div>`;
@@ -485,8 +501,9 @@ function modal(title,fields,vals,ok){
   if(t=="f")return `<label>${lb}</label><input type="file" accept="image/*" multiple data-fm style="margin-top:6px"><div id="fmc" style="color:var(--mu);font-size:.85rem;margin-top:4px"></div>`;
   if(t=="a")return `<label>${lb}</label><textarea data-k="${k}" rows="3">${esc(v)}</textarea>`;
   if(t=="i")return `<label>${lb}</label><input data-k="${k}" value="${esc(v)}" placeholder="https://…"><input type="file" accept="image/*" data-f="${k=="ph"?1600:700}" style="margin-top:6px">`;
-  return `<label>${lb}</label><input data-k="${k}" ${t=="p"?'type="password"':t=="d"?'type="date"':""} value="${esc(v)}">`}).join("");
+  return `<label>${lb}</label><input data-k="${k}" ${t=="p"?'type="password"':t=="d"?'type="date"':""} value="${esc(v)}">`})(F);return only?`<div data-only="${only}">${h}</div>`:h}).join("");
  $("#md").classList.remove("hide");$("#md .box").classList.toggle("wide",fields.some(f=>f[2]=="r"));
+ {const sel=$("#mf [data-k=ty]"),tg=()=>$("#mf").querySelectorAll("[data-only]").forEach(x=>x.style.display=x.dataset.only==(sel&&sel.value)?"":"none");if(sel){sel.onchange=tg;tg()}}
  $("#mc").onclick=()=>$("#md").classList.add("hide");
  $("#ms").onclick=async()=>{const o={};$("#mf").querySelectorAll("[data-k]").forEach(e=>o[e.dataset.k]=e.isContentEditable?((h=>!/<img/i.test(h)&&!e.textContent.trim()?"":h)(san(e.innerHTML))):e.value);
   const m=$("#mf .chk");if(m)o.p=[...m.querySelectorAll("input:checked")].map(x=>x.value);
@@ -524,6 +541,7 @@ document.addEventListener("click",e=>{
  if(c){fx();document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
   ["list","universes","timeline","sec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));if(c.dataset.sid){SO=c.dataset.sid;rsec()}
   $("#timeline").dataset.v=c.dataset.s=="timeline"?"1":"";return}
+ if(e.target.closest("[data-gx]")){GP=null;rg();return}
  const hb=e.target.closest("[data-hub]");
  if(hb&&!e.target.closest(".ctl")){const h=D.hubs.find(q=>q.id==hb.dataset.hub);if(h){goHub(h);window.scrollTo({top:0})}return}
  const nc=e.target.closest("[data-nw]");
@@ -589,7 +607,7 @@ let rq;$("#rd").addEventListener("scroll",()=>{cancelAnimationFrame(rq);rq=reque
 window.addEventListener("hashchange",()=>{if(location.hash.startsWith("#c="))openFromHash();else if(RP){RP=null;rd();rnw();rrc()}});
 let rqf=0;$("#rd").addEventListener("scroll",()=>{if(rqf)return;rqf=1;requestAnimationFrame(()=>{rqf=0;const e=$("#rpg"),R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!e||!P.length)return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});e.textContent=(k+1)+" / "+P.length})},{passive:true});
 let sT;$("#rd").addEventListener("scroll",()=>{if(!RP||!RS[RP]||!TRK)return;clearTimeout(sT);sT=setTimeout(()=>{const R=$("#rd"),P=[...R.querySelectorAll(".pgw")];if(!P.length||!RS[RP])return;let k=0;P.forEach((x,i)=>{if(x.offsetTop<=R.scrollTop+R.clientHeight*.35)k=i});RS[RP].p=k+1;RS[RP].t=Date.now();saveRS()},300)});
-document.addEventListener("keydown",e=>{if(e.key=="Escape"&&RP&&$("#md").classList.contains("hide")){RP=null;rd();rnw();rrc()}});
+document.addEventListener("keydown",e=>{if(e.key=="Escape"&&GP&&$("#md").classList.contains("hide")){GP=null;rg();return}if(e.key=="Escape"&&RP&&$("#md").classList.contains("hide")){RP=null;rd();rnw();rrc()}});
 document.addEventListener("dblclick",e=>{
  if(!document.body.classList.contains("admin"))return;
  const t=e.target.closest(".tab[data-t],.chip");if(!t||t.dataset.t=="home"||t.dataset.t=="hnews")return;
