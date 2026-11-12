@@ -5,12 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vuno Studios</title>
 
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@900&family=Fira+Sans+Condensed:wght@400;600&display=swap" rel="stylesheet">
-<script>try{var t=localStorage.getItem("vuno_th");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-:root{--bg:#e7eee8;--sf:#f5f8f3;--tx:#1a2a21;--mu:#586b5f;--ac:#168343;--ac2:#5f8f1a;--ln:#ccdace;--ink:#223329;--sh:#a6d5b3}
+:root{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;--ink:#34d399;--sh:#065f46;color-scheme:dark}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#34d399;--sh:#065f46;--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding-bottom:70px}
@@ -105,8 +104,7 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
 .pgw{position:relative;margin:0 auto 10px}
 .pgw img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:6px}
 :root[data-theme="dark"]{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;--ink:#34d399;--sh:#065f46;color-scheme:dark}
-:root[data-theme="light"]{color-scheme:light}
-body{font-family:"UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:18px}
+body{font-family:"Comic Sans MS","Comic Sans","ComicUser","Chalkboard SE","UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:16.5px}
 h1,h2,h3,h4,.logo,.tab,.chip,.dl,.go,.add,.mini,.ev b,.cover span,.nwb,.sh,.back,#bar b{font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;letter-spacing:.02em;text-transform:uppercase}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(34,197,94,.13) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
 header{position:sticky;top:0;z-index:15;background:var(--sf);padding-top:calc(14px + env(safe-area-inset-top,0px));border-bottom:3px solid var(--ink);box-shadow:0 4px 0 var(--sh)}
@@ -215,6 +213,34 @@ button.dl{border:0;cursor:pointer;font-size:1.05rem}
 .edu{position:absolute;right:6px;bottom:10px;background:rgba(0,0,0,.72);color:#fff;font-size:.75rem;padding:0 6px;border-radius:5px}
 .epb{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(0,0,0,.4)}.epb b{display:block;height:100%;background:#a3e635}
 .eit b{font-size:1.05rem}.eit p{margin:4px 0 0;color:var(--mu);font-size:.9rem}
+@font-face{font-family:"ComicUser";src:local("Comic Sans MS"),local("ComicSansMS"),url("fonts/ComicSansMS.woff2") format("woff2"),url("fonts/ComicSansMS.ttf") format("truetype")}
+.tab,.chip,.hc,.earth,.go{transition:transform .15s,box-shadow .15s}
+.tab.on,.chip.on,.hc.on,.sh,.dl,.row .pri{color:#04130b}
+.card:not([data-hub]) .cover span,.card:not([data-hub]) .cover::after{display:none}
+.card:not([data-hub]) .cover:not(.im)::before{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;color:rgba(255,255,255,.55)}
+.card .body{padding:10px 12px 12px;text-align:left}
+.card[data-hub] .body{padding:8px 12px 12px}
+.ct{margin:0 0 6px;font-size:1.12rem;line-height:1.2;overflow-wrap:anywhere}
+.body p{margin:4px 0 0;line-height:1.35}.body .tag{margin:4px 4px 0 0}
+.hero{margin-bottom:6px}.hero p{line-height:1.45}
+.sh{margin-top:4px}
+html{-webkit-text-size-adjust:100%}body{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+button,.card,.tab,.chip,.hc,.ep{touch-action:manipulation}
+@media(max-width:820px){
+ header{padding:10px 4vw;padding-top:calc(10px + env(safe-area-inset-top,0px));gap:8px}
+ nav{width:100%;overflow-x:auto;flex-wrap:nowrap;gap:6px;padding:2px 2px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ nav::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;white-space:nowrap}
+ main{padding:22px 4vw 60px}.logo{font-size:1.6rem}
+}
+@media(max-width:620px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+ .tab,.chip,.hc{padding:9px 14px;font-size:1rem;min-height:40px}
+ .card{box-shadow:3px 3px 0 var(--sh)}.card .body{padding:8px 10px 10px}.ct{font-size:1rem}
+ .md{padding:8px;place-items:end center}.box{max-width:100%;max-height:94vh;padding:16px;border-radius:14px}
+ .ri{padding:12px 4vw 90px}.shero{gap:12px}.scv{flex-basis:140px}
+ .nw .card{flex-basis:140px}.hero h1{margin-bottom:8px}
+}
+@media(hover:none){.card:hover{transform:none;box-shadow:5px 5px 0 var(--sh)}.tab:hover,.chip:hover,.hc:hover,.earth:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -222,9 +248,9 @@ button.dl{border:0;cursor:pointer;font-size:1.05rem}
   <div class="logo">VUNO <span>STUDIOS</span></div>
   <nav>
     <button class="tab on" data-t="home">🏠 Главная</button><button class="tab" data-t="hnews">📰 Новости</button><button class="tab" data-t="projects">Проекты</button>
-    <button class="tab" data-t="news">Новости</button><button class="tab" data-t="chars">Персонажи</button>
+    <button class="tab" data-t="news">Новости</button><button class="tab" data-t="chars">Персонажи</button><button class="tab" data-t="fun">Интересное</button>
     
-    <span id="xt" style="display:contents"></span><button class="tab adm" data-a="add" data-l="secs" title="Добавить раздел">＋</button><button class="tab" id="th" title="Тема">🌗</button><button class="tab" id="lk" title="Админ">🔒</button>
+    <span id="xt" style="display:contents"></span><button class="tab adm" data-a="add" data-l="secs" title="Добавить раздел">＋</button><button class="tab" id="lk" title="Админ">🔒</button>
   </nav>
 </header>
 <main>
@@ -253,6 +279,7 @@ button.dl{border:0;cursor:pointer;font-size:1.05rem}
   </section>
   <section id="news" class="hide"><div class="hero"><h1>Новости</h1></div><div id="nwbody"></div></section>
   <section id="tsec" class="hide"><div id="tsb"></div></section>
+  <section id="fun" class="hide"><div class="hero"><h1>Интересное</h1></div><div id="funbody"></div></section>
   <section id="chars" class="hide"><div class="hero"><h1>Персонажи</h1></div><div id="chbody"></div></section>
   <section id="social" class="hide">
     <div class="hero"><h1>Мы в соцсетях</h1></div>
@@ -306,6 +333,7 @@ const FD={
  soc:[["n","Название"],["h","Ник"],["u","Ссылка"]],
  secs:[["n","Название раздела"],["w","Где разместить","s",()=>[["sub","Внутри «Проекты» (ряд вкладок)"],["top","Главное меню"]]],["ty","Тип раздела","s",()=>TYS],["t","Текст над содержимым (необязательно)","a"],["tx","Текст (для типа «Текст»)","r"]],
  hubs:[["n","Название карточки"],["cv","Обложка (ссылка или файл)","i"],["t","Короткий текст (необязательно)","a"],["u","Внешняя ссылка (необязательно: если указана, карточка откроет её вместо мира)"]],
+ fun:[["n","Заголовок"],["cat","Рубрика (например: Факт, Концепт-арт)","dl",()=>FUNC()],["cv","Обложка (ссылка или файл)","i"],["s","Короткий текст (необязательно)","a"],["b","Содержимое","r"],["dt","Дата","d"]],
  news:[["n","Заголовок"],["ns","Где показывать","s",()=>[["","Внутри мира"],["home","Основное на главной"]]],["wd","Мир (для новостей внутри мира)","s",()=>D.hubs.map(h=>[h.id,h.n])],["dt","Дата","d"],["cv","Обложка (ссылка или файл)","i"],["s","Короткий текст на обложке (необязательно)","a"],["b","Статья","r"]],
  chars:[["n","Имя"],["tp","Тип","s",()=>[["Герой","Герой"],["Злодей","Злодей"],["Антигерой","Антигерой"]]],["cv","Обложка (ссылка или файл)","i"],["ph","Полное фото (ссылка или файл)","i"],["ch","Характер","r"],["pw","Силы","r"],["eu","Из какой Земли (впишите или выберите из прошлых)","dl",()=>EUS()]]
 };
@@ -319,7 +347,7 @@ const sc=u=>/^(https?:\/\/|data:image\/|[^"'<>:\\\n]+\.(png|jpe?g|webp|gif|avif)
 const uid=()=>Math.random().toString(36).slice(2,8);
 const ctl=(l,i,x)=>`<div class="ctl adm">${[["up","↑"],["dn","↓"],["edit","✎"],["del","✕"]].map(([a,t])=>`<button data-a="${a}" data-l="${l}" data-i="${i}"${x?` data-sid="${x}"`:""}>${t}</button>`).join("")}</div>`;
 const add=(l,x)=>`<button class="add adm" data-a="add" data-l="${l}"${x?` data-sid="${x}"`:""}>+ Добавить</button>`;
-const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}${p.eu?` <span class="tag">🌍 ${esc(p.eu)}</span>`:""}${p.ty=="game"?` <span class="tag">🎮 ${esc(p.gn||"Игра")}</span>`:""}${p.ty=="series"?` <span class="tag">📺 ${(p.eps||[]).length} сер.</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
+const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${p.id}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[i%4]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><h3 class="ct">${esc(p.n)}</h3>${p.dt?`<p class="dt">${fd(p.dt)}</p>`:""}${p.s?`<span class="tag">${esc(p.s)}</span>`:""}${(p.pg||[]).length?` <span class="tag">${p.pg.length} стр.</span>`:""}${p.rt?` <span class="tag">★ ${esc(p.rt)}</span>`:""}${p.ag?` <span class="tag">${esc(p.ag)}</span>`:""}${p.eu?` <span class="tag">🌍 ${esc(p.eu)}</span>`:""}${p.ty=="game"?` <span class="tag">🎮 ${esc(p.gn||"Игра")}</span>`:""}${p.ty=="series"?` <span class="tag">📺 ${(p.eps||[]).length} сер.</span>`:""}</div>${c?ctl(l||"projects",i,x):""}</div>`;
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
@@ -330,9 +358,9 @@ function render(){
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
- $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();rg();rs();names();vis();rd();
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();rfun();rg();rs();names();vis();rd();
 }
-const TB=[["projects","Проекты"],["news","Новости"],["chars","Персонажи"]],SB=[["list","Мои проекты"]];
+const TB=[["projects","Проекты"],["news","Новости"],["chars","Персонажи"],["fun","Интересное"]],SB=[["list","Мои проекты"]];
 const DEFN=Object.fromEntries([...TB,...SB]),nm=k=>(D.names||{})[k]||DEFN[k];
 const fd=v=>{const d=new Date(v+"T00:00:00");if(isNaN(d))return esc(v);return"📅 "+d.toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"})+(d>new Date()?" · скоро":"")};
 function rxc(){$(".sub").classList.toggle("hb",!D.secs.some(x=>x.w!="top"));
@@ -395,7 +423,7 @@ function seen(r){SN[r]=1;try{localStorage.setItem("vuno_sn",JSON.stringify(SN))}
 let fxT;function fx(){document.body.classList.add("fx");clearTimeout(fxT);fxT=setTimeout(()=>document.body.classList.remove("fx"),900)}
 function rrc(){
  const L=Object.entries(RS).map(([r,v])=>({r,v,p:findP(r).p})).filter(z=>z.p).sort((a,b)=>b.v.t-a.v.t).slice(0,8);
- $("#rc").innerHTML=L.length?`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap"><h2 class="sh">📖 Недавно читаемые</h2><button class="go" data-rclr>Очистить</button></div><div class="nw">${L.map(z=>{const p=z.p,n=(p.pg||[]).length,pg=Math.min(z.v.p||1,n||1);return `<div class="card" data-p="${esc(z.r)}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[0]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body">${p.ty=="series"?sInfo(p,z.v):`<span class="tag">${n?`Стр. ${pg} из ${n}`:"Без страниц"}</span>${n?`<div class="pbar"><i style="width:${Math.round(pg/n*100)}%"></i></div>`:""}`}</div></div>`}).join("")}</div>`:""}
+ $("#rc").innerHTML=L.length?`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap"><h2 class="sh">📖 Недавно читаемые</h2><button class="go" data-rclr>Очистить</button></div><div class="nw">${L.map(z=>{const p=z.p,n=(p.pg||[]).length,pg=Math.min(z.v.p||1,n||1);return `<div class="card" data-p="${esc(z.r)}"><div class="cover${sc(p.cv)?" im":""}" style="background:${G[0]}">${sc(p.cv)?`<img src="${esc(sc(p.cv))}" alt="">`:""}<span>${esc(p.n)}</span></div><div class="body"><h3 class="ct">${esc(p.n)}</h3>${p.ty=="series"?sInfo(p,z.v):`<span class="tag">${n?`Стр. ${pg} из ${n}`:"Без страниц"}</span>${n?`<div class="pbar"><i style="width:${Math.round(pg/n*100)}%"></i></div>`:""}`}</div></div>`}).join("")}</div>`:""}
 const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
 const crc=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
 function zip(fl){
@@ -472,7 +500,7 @@ const ctn=(l,i)=>`<div class="ctl adm"><button data-a="edit" data-l="${l}" data-
 const ncv=(n,i)=>`<div class="cover${sc(n.cv)?" im":""}" style="background:${G[i%4]}">${sc(n.cv)?`<img src="${esc(sc(n.cv))}" alt="">`:""}<span>${esc(n.n)}</span></div>`;
 function rnws(){
  const x=D.news.findIndex(q=>q.id==NW);if(x<0)NW=null;
- const card=({n,i},all)=>`<div class="card" data-nw="${n.id}">${SN["news:"+n.id]?"":'<span class="nwb">NEW</span>'}${ncv(n,i)}<div class="body"><p class="dt">${fdn(nk(n))}</p><p>${esc((n.s||txt(n.b)).slice(0,140))}</p>${all?`<span class="tag">${n.ns=="home"?"Основное":esc(hubName(n.wd))}</span>`:""}</div>${ctn("news",i)}</div>`;
+ const card=({n,i},all)=>`<div class="card" data-nw="${n.id}">${SN["news:"+n.id]?"":'<span class="nwb">NEW</span>'}${ncv(n,i)}<div class="body"><h3 class="ct">${esc(n.n)}</h3><p class="dt">${fdn(nk(n))}</p><p>${esc((n.s||txt(n.b)).slice(0,140))}</p>${all?`<span class="tag">${n.ns=="home"?"Основное":esc(hubName(n.wd))}</span>`:""}</div>${ctn("news",i)}</div>`;
  const grid=(L,all)=>(L.length?"":`<p style="color:var(--mu)">Новостей пока нет.</p>`)+`<div class="grid">${L.map(z=>card(z,all)).join("")+add("news")}</div>`;
  let a,h;
  if(x<0){const L=nlist();a=grid(L.filter(z=>z.n.ns!="home"&&z.n.wd==CUR),0);
@@ -482,10 +510,10 @@ function rnws(){
  $("#nwbody").innerHTML=a;$("#hnwbody").innerHTML=h}
 function rnh(){
  const L=nlist().filter(z=>!SN["news:"+z.n.id]).slice(0,4);
- $("#hnn").innerHTML=L.length&&!(D.hide||{}).news?`<h2 class="sh">📰 Новости</h2><div class="nw">${L.map(({n,i})=>`<div class="card" data-gh="${n.id}"><span class="nwb">NEW</span>${ncv(n,i)}<div class="body"><p class="dt">${fdn(nk(n))}</p></div></div>`).join("")}</div>`:""}
+ $("#hnn").innerHTML=L.length&&!(D.hide||{}).news?`<h2 class="sh">📰 Новости</h2><div class="nw">${L.map(({n,i})=>`<div class="card" data-gh="${n.id}"><span class="nwb">NEW</span>${ncv(n,i)}<div class="body"><h3 class="ct">${esc(n.n)}</h3><p class="dt">${fdn(nk(n))}</p></div></div>`).join("")}</div>`:""}
 function rnn(){
  const L=nlist().filter(z=>z.n.ns!="home"&&z.n.wd==CUR&&!SN["news:"+z.n.id]).slice(0,4);
- $("#nn").innerHTML=L.length&&!(D.hide||{}).news?`<h2 class="sh">📰 Новости</h2><div class="nw">${L.map(({n,i})=>`<div class="card" data-gn="${n.id}"><span class="nwb">NEW</span>${ncv(n,i)}<div class="body"><p class="dt">${fdn(nk(n))}</p></div></div>`).join("")}</div>`:""}
+ $("#nn").innerHTML=L.length&&!(D.hide||{}).news?`<h2 class="sh">📰 Новости</h2><div class="nw">${L.map(({n,i})=>`<div class="card" data-gn="${n.id}"><span class="nwb">NEW</span>${ncv(n,i)}<div class="body"><h3 class="ct">${esc(n.n)}</h3><p class="dt">${fdn(nk(n))}</p></div></div>`).join("")}</div>`:""}
 function rhome(){
  $("#hh2").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp2").textContent=D.site.p;
  $("#hubs").innerHTML=D.hubs.map((h,i)=>`<div class="card" data-hub="${h.id}">${ncv(h,i)}${h.t?`<div class="body"><p>${esc(h.t)}</p></div>`:""}${ctl("hubs",i)}</div>`).join("")+add("hubs");
@@ -505,10 +533,10 @@ function rg(){
  const u=su(h.dl);
  Q.innerHTML=`<div class="ri"><div class="rb"><button class="go" data-gx>← На главную</button></div>${sc(h.cv)?`<div class="phw"><img src="${esc(sc(h.cv))}" alt="${esc(h.n)}"></div>`:""}<h1 style="margin-top:14px">${esc(h.n)}</h1><div style="margin-bottom:12px">${tags.map(x=>`<span class="tag">${esc(x)}</span> `).join("")}</div>${u?`<a class="dl" href="${esc(u)}" target="_blank" rel="noopener">⬇ Скачать на itch.io</a>`:`<p class="adm" style="color:var(--mu)">Ссылка для скачивания не указана</p>`}${h.d?`<div class="rdesc rich">${RT(h.d)}</div>`:""}${shots.length?`<div class="shots">${shots.map((x,k)=>`<img src="${esc(x)}" loading="lazy" alt="Скриншот ${k+1}">`).join("")}</div>`:""}${cr.length?`<div class="crw">${cr.map(([r,n])=>`<div class="cr">${r?`<small>${esc(r)}</small>`:""}<b>${esc(n)}</b></div>`).join("")}</div>`:""}<div class="adm" style="gap:6px;margin:10px 0"><button class="mini" data-a="edit" data-l="${f.l}" data-i="${f.L.indexOf(h)}"${f.x?` data-sid="${f.x}"`:""}>✎ Изменить игру</button></div><div class="rb" style="margin-top:24px"><button class="go" data-gx>← На главную</button></div></div><div class="rfl"><button data-gx>✕ Выйти</button></div>`;
  Q.classList.remove("hide");document.body.style.overflow="hidden"}
-const newWorld=h=>({site:{h:(h&&h.n)||"",p:""},projects:[],earths:[],reading:[],chars:[],secs:[],hide:{},names:{}});
-function view(id){const W=id?R.worlds[id]:null;return{site:W?W.site:R.site,projects:W?W.projects:[],earths:W?W.earths:[],reading:W?W.reading:[],chars:W?W.chars:[],secs:W?W.secs:[],hide:W?W.hide:{},names:W?W.names:{},soc:R.soc,hubs:R.hubs,news:R.news}}
-function syncOut(){if(!R)return;if(CUR&&R.worlds[CUR]){const W=R.worlds[CUR];["site","projects","earths","reading","chars","secs","hide","names"].forEach(k=>W[k]=D[k])}else if(!CUR)R.site=D.site;R.soc=D.soc;R.hubs=D.hubs;R.news=D.news}
-function enter(id){syncOut();if(id&&!R.worlds[id])R.worlds[id]=newWorld(R.hubs.find(x=>x.id==id));CUR=id||null;D=view(CUR);EO=CO=NW=SO=TO=SP=SE=null;killPlayer();HV="main";render();if(CUR)$(".chip[data-s=list]").click()}
+const newWorld=h=>({site:{h:(h&&h.n)||"",p:""},projects:[],earths:[],reading:[],chars:[],fun:[],secs:[],hide:{},names:{}});
+function view(id){const W=id?R.worlds[id]:null;return{site:W?W.site:R.site,projects:W?W.projects:[],earths:W?W.earths:[],reading:W?W.reading:[],chars:W?W.chars:[],fun:W?W.fun:[],secs:W?W.secs:[],hide:W?W.hide:{},names:W?W.names:{},soc:R.soc,hubs:R.hubs,news:R.news}}
+function syncOut(){if(!R)return;if(CUR&&R.worlds[CUR]){const W=R.worlds[CUR];["site","projects","earths","reading","chars","fun","secs","hide","names"].forEach(k=>W[k]=D[k])}else if(!CUR)R.site=D.site;R.soc=D.soc;R.hubs=D.hubs;R.news=D.news}
+function enter(id){syncOut();if(id&&!R.worlds[id])R.worlds[id]=newWorld(R.hubs.find(x=>x.id==id));CUR=id||null;D=view(CUR);EO=CO=NW=SO=TO=SP=SE=null;FUN=null;FC="";killPlayer();HV="main";render();window.scrollTo(0,0);if(CUR)$(".chip[data-s=list]").click()}
 const hubName=id=>(D.hubs.find(h=>h.id==id)||{}).n||"Мир";
 function worldOf(id){for(const k of Object.keys(R.worlds)){const W=R.worlds[k];if(W.projects.some(p=>p.id==id)||W.secs.some(q=>(q.items||[]).some(p=>p.id==id)))return k}return null}
 const FDE=[["se","Сезон (число)"],["n","Название серии"],["d","Описание","a"],["th","Превью (ссылка или файл)","i"],["dur","Длительность, например 24 мин (необязательно)"],["src","Видео: по строке «Озвучка | Качество | Ссылка» (mp4, webm, m3u8, YouTube, Vimeo). Субтитры: «Субтитры | Название | ссылка.vtt»","ta"]];
@@ -653,7 +681,17 @@ document.addEventListener("keydown",e=>{
  else if(k=="ArrowLeft"||k=="j"){e.preventDefault();a.seek(k=="j"?-10:-5)}
  else if(k=="ArrowRight"||k=="l"){e.preventDefault();a.seek(k=="l"?10:5)}
  else if(k=="m")a.mu();else if(k=="f")a.fs();else if(k=="c")a.cc()});
-function names(){TB.concat(SB).forEach(([k])=>{const e=$(`.tab[data-t=${k}],.chip[data-s=${k}]`);if(e)e.textContent=nm(k)});$("#chars h1").textContent=nm("chars");$("#news h1").textContent=nm("news");$("#social h1").textContent=nm("social")=="Соцсети"?"Мы в соцсетях":nm("social")}
+let FUN=null,FC="";
+const FUNC=()=>[...new Set(D.fun.map(x=>x.cat).filter(Boolean))];
+function rfun(){
+ const B=$("#funbody");if(!B)return;
+ const x=D.fun.findIndex(q=>q.id==FUN);if(x<0)FUN=null;
+ if(x<0){
+  const cats=FUNC(),L=D.fun.map((n,i)=>({n,i})).filter(z=>!FC||z.n.cat==FC);
+  B.innerHTML=(cats.length?`<div class="hrow"><button class="hc${FC?"":" on"}" data-fc="">Все</button>${cats.map(c=>`<button class="hc${FC==c?" on":""}" data-fc="${esc(c)}">${esc(c)}</button>`).join("")}</div>`:"")+(D.fun.length?"":`<p style="color:var(--mu)">Здесь пока пусто.</p>`)+`<div class="grid">${L.map(({n,i})=>`<div class="card" data-fn="${n.id}"><div class="cover${sc(n.cv)?" im":""}" style="background:${G[i%4]}">${sc(n.cv)?`<img loading="lazy" src="${esc(sc(n.cv))}" alt="">`:""}<span>${esc(n.n)}</span></div><div class="body"><h3 class="ct">${esc(n.n)}</h3>${n.cat?`<span class="tag">${esc(n.cat)}</span>`:""}${n.s||n.b?`<p>${esc((n.s||txt(n.b)).slice(0,120))}</p>`:""}</div>${ctl("fun",i)}</div>`).join("")+add("fun")}</div>`;return}
+ const n=D.fun[x];
+ B.innerHTML=`<button class="back" data-fnback>← Назад</button><div class="cd${CF?" ani":""}">${sc(n.cv)?`<div class="phw"><img src="${esc(sc(n.cv))}" alt=""></div>`:""}<h2>${esc(n.n)}</h2>${n.cat||n.dt?`<p style="margin:0 0 10px">${n.cat?`<span class="tag">${esc(n.cat)}</span> `:""}${n.dt?`<span style="color:var(--ac);font-weight:600">${fdn(n.dt)}</span>`:""}</p>`:""}<div class="rich">${RT(n.b)}</div><div class="adm" style="gap:6px;margin-top:12px"><button class="mini" data-a="edit" data-l="fun" data-i="${x}">✎ Изменить</button><button class="mini" data-a="del" data-l="fun" data-i="${x}">✕ Удалить</button></div></div>`}
+function names(){TB.concat(SB).forEach(([k])=>{const e=$(`.tab[data-t=${k}],.chip[data-s=${k}]`);if(e)e.textContent=nm(k)});$("#chars h1").textContent=nm("chars");$("#news h1").textContent=nm("news");$("#fun h1").textContent=nm("fun");$("#social h1").textContent=nm("social")=="Соцсети"?"Мы в соцсетях":nm("social")}
 function vis(){
  const h=D.hide||{},adm=document.body.classList.contains("admin");$("#nw").classList.toggle("hb",!!h.new);$(".tab[data-t=hnews]").classList.toggle("off",!!h.news);
  TB.forEach(([k])=>$(`.tab[data-t=${k}]`).classList.toggle("off",!!h[k]));
@@ -667,7 +705,7 @@ const eN=id=>(D.earths.find(x=>x.id==id)||{}).n||"";
 const tg=t=>t?`<span class="tag" style="color:${TC[t]||"var(--mu)"};border-color:${TC[t]||"var(--ln)"}">${esc(t)}</span>`:"";
 function rch(){
  const i=D.chars.findIndex(x=>x.id==CO),c=D.chars[i],B=$("#chbody");
- if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover${sc(c.cv)?" im":""}" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body">${tg(c.tp)}${ET(c)}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
+ if(!c){CO=null;B.innerHTML=`<div class="grid">`+D.chars.map((c,i)=>`<div class="card" data-c="${c.id}"><div class="cover${sc(c.cv)?" im":""}" style="background:${G[i%4]}">${sc(c.cv)?`<img src="${esc(sc(c.cv))}" alt="">`:""}<span>${esc(c.n)}</span></div><div class="body"><h3 class="ct">${esc(c.n)}</h3>${tg(c.tp)}${ET(c)}</div>${ctl("chars",i)}</div>`).join("")+add("chars")+`</div>`;return}
  const ph=sc(c.ph)||sc(c.cv),ext=/^data:image\/png|\.png(\?|$)/i.test(ph)?"png":"jpg";
  B.innerHTML=`<button class="back" data-cback>← Все персонажи</button><div class="cd${CF?" ani":""}">${ph?`<div class="phw"><img src="${esc(ph)}" alt="${esc(c.n)}"></div><a class="dl" href="${esc(ph)}" download="${esc(c.n)}.${ext}">⬇ Скачать фото</a>`:""}<h2>${esc(c.n)}</h2>${tg(c.tp)}${blocks(c)}<button class="mini adm" data-a="edit" data-l="chars" data-i="${i}">✎ Изменить</button></div>`}
 function commit(){try{localStorage.setItem("vuno",JSON.stringify((syncOut(),R)))}catch(e){alert("Не удалось сохранить черновик: слишком большие картинки. Используйте ссылки на обложки.")}render()}
@@ -717,10 +755,10 @@ document.addEventListener("click",e=>{
   if(a=="del"){if(!confirm(l=="hubs"?"Удалить карточку вместе со всем её содержимым (проекты, персонажи, разделы)?":"Удалить?"))return;const x=L.splice(n,1)[0];if(l=="hubs")delete R.worlds[x.id];if(l=="projects")D.earths.forEach(z=>z.p=z.p.filter(q=>q!=x.id))}
   return commit()}
  const t=e.target.closest(".tab[data-t]");
- if(t){if(CUR&&["home","hnews"].includes(t.dataset.t))enter(null);fx();document.body.classList.toggle("in",!["home","hnews"].includes(t.dataset.t));document.querySelectorAll(".tab[data-t]").forEach(x=>x.classList.toggle("on",x==t));
-  ["home","hnews","projects","news","chars","social","tsec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=t.dataset.t));if(t.dataset.sid){TO=t.dataset.sid;rsec()}return}
+ if(t){if(CUR&&["home","hnews"].includes(t.dataset.t))enter(null);fx();window.scrollTo(0,0);document.body.classList.toggle("in",!["home","hnews"].includes(t.dataset.t));document.querySelectorAll(".tab[data-t]").forEach(x=>x.classList.toggle("on",x==t));
+  ["home","hnews","projects","news","chars","fun","social","tsec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=t.dataset.t));if(t.dataset.sid){TO=t.dataset.sid;rsec()}return}
  const c=e.target.closest(".chip");
- if(c){fx();document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
+ if(c){fx();window.scrollTo(0,0);document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x==c));
   ["list","universes","timeline","sec"].forEach(id=>$("#"+id).classList.toggle("hide",id!=c.dataset.s));if(c.dataset.sid){SO=c.dataset.sid;rsec()}
   $("#timeline").dataset.v=c.dataset.s=="timeline"?"1":"";return}
  if(e.target.closest("[data-sc]")){closePlayer();return}
@@ -737,9 +775,12 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-gx]")){GP=null;rg();return}
  const hb=e.target.closest("[data-hub]");
  if(hb&&!e.target.closest(".ctl")){const h=D.hubs.find(q=>q.id==hb.dataset.hub);if(h){goHub(h);window.scrollTo({top:0})}return}
+ {const fc=e.target.closest("[data-fc]");if(fc){FC=fc.dataset.fc;return rfun()}}
+ {const fn=e.target.closest("[data-fn]");if(fn&&!e.target.closest(".ctl")){FUN=fn.dataset.fn;CF=1;rfun();CF=0;window.scrollTo(0,0);return}}
+ if(e.target.closest("[data-fnback]")){FUN=null;window.scrollTo(0,0);return rfun()}
  const nc=e.target.closest("[data-nw]");
  if(nc&&!e.target.closest(".ctl")){NW=nc.dataset.nw;sn("news:"+NW);CF=1;rnws();rnn();rnh();CF=0;window.scrollTo({top:0});return}
- if(e.target.closest("[data-nback]")){NW=null;return rnws()}
+ if(e.target.closest("[data-nback]")){NW=null;window.scrollTo(0,0);return rnws()}
  const hv=e.target.closest("[data-hv]");
  if(hv){HV=hv.dataset.hv;fx();return rnws()}
  const gh=e.target.closest("[data-gh]");
@@ -776,15 +817,14 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-rt]"))return $("#rd").scrollTo({top:0,behavior:"smooth"});
  const pp=e.target.closest("[data-p]");
  if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){openP(pp.dataset.p);return}
- const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;CF=1;rch();CF=0;return}
- if(e.target.closest("[data-cback]")){CO=null;return rch()}
+ const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;CF=1;rch();CF=0;window.scrollTo(0,0);return}
+ if(e.target.closest("[data-cback]")){CO=null;window.scrollTo(0,0);return rch()}
  const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
  const er=e.target.closest("[data-e]");if(er){EO=er.dataset.e;return render()}
  if(e.target.closest("[data-back]")){EO=null;return render()}
  const o=e.target.closest("[data-open]");
  if(o&&o.dataset.open&&!e.target.closest(".ctl"))window.open(o.dataset.open,"_blank","noopener");
 });
-$("#th").onclick=()=>{const r=document.documentElement,c=r.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),n=c=="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("vuno_th",n)}catch(e){}};
 $("#lk").onclick=()=>{
  if(document.body.classList.contains("admin"))return;
  modal("Вход для админа",[["pw","Пароль","p"]],{},async o=>{
@@ -817,7 +857,7 @@ $("#imf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileRe
 $("#rs").onclick=()=>{if(confirm("Удалить черновик и вернуть опубликованную версию?")){try{localStorage.removeItem("vuno")}catch(e){}location.reload()}};
 const fix=d=>{
  const hubs=d.hubs||[{id:"h1",n:"Зенит Юниверс",cv:"",t:"",ts:0}],f0=hubs[0]?hubs[0].id:"h1";
- const nw=x=>({site:{...(x.site||{h:"",p:""})},projects:x.projects||[],earths:x.earths||[],reading:x.reading||[],chars:x.chars||[],secs:(x.secs||[]).map(q=>({...q,items:q.items||[]})),hide:x.hide||{},names:x.names||{}});
+ const nw=x=>({site:{...(x.site||{h:"",p:""})},projects:x.projects||[],earths:x.earths||[],reading:x.reading||[],chars:x.chars||[],fun:x.fun||[],secs:(x.secs||[]).map(q=>({...q,items:q.items||[]})),hide:x.hide||{},names:x.names||{}});
  const worlds={};
  if(d.worlds)Object.keys(d.worlds).forEach(k=>worlds[k]=nw(d.worlds[k]));else worlds[f0]=nw(d);
  return{site:d.site||DEF.site,soc:d.soc||[],hubs,worlds,news:(d.news||[]).map(n=>n.ns=="home"||n.wd?n:{...n,wd:f0})}};
