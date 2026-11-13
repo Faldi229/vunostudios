@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@900&family=Fira+Sans+Condensed:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;--ink:#34d399;--sh:#065f46;color-scheme:dark}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#34d399;--sh:#065f46;--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;color-scheme:dark}}
+:root{--bg:#071316;--sf:#0e1d20;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1c3a38;--ink:#34d399;--sh:#065f46;--acf:#128a49;color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#34d399;--sh:#065f46;--bg:#071316;--sf:#0e1d20;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1c3a38;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding-bottom:70px}
 header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:18px 5vw;border-bottom:1px solid var(--ln)}
@@ -72,7 +72,7 @@ body.admin .adm{display:flex!important}
 @keyframes shine{to{background-position:-200% 0}}
 @keyframes up{from{opacity:0;transform:translateY(16px)}}
 @keyframes drift{to{transform:translate(4%,3%) scale(1.1)}}
-body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.12),transparent 40%),radial-gradient(circle at 80% 70%,rgba(132,204,22,.09),transparent 40%);animation:drift 16s ease-in-out infinite alternate}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(45,212,191,.14),transparent 40%),radial-gradient(circle at 80% 70%,rgba(132,204,22,.09),transparent 40%);animation:drift 16s ease-in-out infinite alternate}
 .hero h1{animation:up .7s backwards}.hero p{animation:up .7s .15s backwards}
 .card,.ev,.erow,.cd{animation:up .5s backwards}
 .grid>:nth-child(2),.ev:nth-child(2),.erow:nth-child(2){animation-delay:.07s}
@@ -103,10 +103,10 @@ body.admin .off{display:inline-block!important;opacity:.45;outline:1px dashed va
 .rdesc{color:var(--mu);white-space:pre-line;margin:0 0 14px}
 .pgw{position:relative;margin:0 auto 10px}
 .pgw img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:6px}
-:root[data-theme="dark"]{--bg:#07120d;--sf:#0f1d16;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1f3a2c;--ink:#34d399;--sh:#065f46;color-scheme:dark}
-body{font-family:"Comic Sans MS","Comic Sans","ComicUser","Chalkboard SE","UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:16.5px}
+:root[data-theme="dark"]{--bg:#071316;--sf:#0e1d20;--tx:#ecfdf5;--mu:#8fb3a0;--ac:#34d399;--ac2:#a3e635;--ln:#1c3a38;--ink:#34d399;--sh:#065f46;--acf:#128a49;color-scheme:dark}
+body{font-family:"UrwDinSC","UrwDin","Fira Sans Condensed","Arial Narrow",sans-serif;font-size:18px}
 h1,h2,h3,h4,.logo,.tab,.chip,.dl,.go,.add,.mini,.ev b,.cover span,.nwb,.sh,.back,#bar b{font-family:"UrwDinBlack","Fira Sans Extra Condensed","Arial Narrow",sans-serif;font-weight:900;letter-spacing:.02em;text-transform:uppercase}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(34,197,94,.13) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(45,212,191,.12) 1.4px,transparent 1.8px);background-size:16px 16px;-webkit-mask-image:linear-gradient(#000,transparent 75%);mask-image:linear-gradient(#000,transparent 75%)}
 header{position:sticky;top:0;z-index:15;background:var(--sf);padding-top:calc(14px + env(safe-area-inset-top,0px));border-bottom:3px solid var(--ink);box-shadow:0 4px 0 var(--sh)}
 .logo{font-size:2rem}
 .tab,.chip{border:2px solid var(--ink);color:var(--tx);background:var(--sf);box-shadow:3px 3px 0 var(--sh);font-size:1.05rem}
@@ -213,9 +213,9 @@ button.dl{border:0;cursor:pointer;font-size:1.05rem}
 .edu{position:absolute;right:6px;bottom:10px;background:rgba(0,0,0,.72);color:#fff;font-size:.75rem;padding:0 6px;border-radius:5px}
 .epb{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(0,0,0,.4)}.epb b{display:block;height:100%;background:#a3e635}
 .eit b{font-size:1.05rem}.eit p{margin:4px 0 0;color:var(--mu);font-size:.9rem}
-@font-face{font-family:"ComicUser";src:local("Comic Sans MS"),local("ComicSansMS"),url("fonts/ComicSansMS.woff2") format("woff2"),url("fonts/ComicSansMS.ttf") format("truetype")}
 .tab,.chip,.hc,.earth,.go{transition:transform .15s,box-shadow .15s}
-.tab.on,.chip.on,.hc.on,.sh,.dl,.row .pri{color:#04130b}
+.tab.on,.chip.on,.hc.on,.sh,.dl,.row .pri{color:#fff}
+.tab.on,.hc.on,.sh,.row .pri{background:var(--acf)}.chip.on,.dl{background:linear-gradient(90deg,var(--acf),#4d8f17)}
 .card:not([data-hub]) .cover span,.card:not([data-hub]) .cover::after{display:none}
 .card:not([data-hub]) .cover:not(.im)::before{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;color:rgba(255,255,255,.55)}
 .card .body{padding:10px 12px 12px;text-align:left}
@@ -241,6 +241,34 @@ button,.card,.tab,.chip,.hc,.ep{touch-action:manipulation}
  .nw .card{flex-basis:140px}.hero h1{margin-bottom:8px}
 }
 @media(hover:none){.card:hover{transform:none;box-shadow:5px 5px 0 var(--sh)}.tab:hover,.chip:hover,.hc:hover,.earth:hover{transform:none}}
+main{max-width:1100px}
+.tab,.chip,.hc{font-size:1.1rem}
+.grid{gap:22px}
+.card .body{padding:12px 14px 14px}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;right:-10px;top:-24px;width:190px;height:190px;border-radius:50%;background:radial-gradient(var(--ac) 2.2px,transparent 2.8px) 0 0/13px 13px;opacity:.22;z-index:-1;pointer-events:none}
+.hero h1::after{content:"";display:block;width:110px;height:9px;margin-top:10px;background:repeating-linear-gradient(135deg,var(--ac) 0 7px,transparent 7px 14px);border-radius:2px}
+.hero p{font-size:1.08rem}
+.sh{position:relative;margin-bottom:24px}
+.sh::after{content:"";position:absolute;left:24px;bottom:-12px;border:9px solid transparent;border-top-color:var(--ink);border-bottom:0}
+header{background-image:radial-gradient(rgba(52,211,153,.12) 1.2px,transparent 1.6px);background-size:10px 10px}
+footer{background:repeating-linear-gradient(135deg,rgba(52,211,153,.07) 0 10px,transparent 10px 20px)}
+.grid>.card:nth-child(even),.nw>.card:nth-child(even){rotate:.4deg}
+.grid>.card:nth-child(odd),.nw>.card:nth-child(odd){rotate:-.3deg}
+.card{transition:transform .25s,box-shadow .25s,border-color .25s,rotate .25s}.card:hover{rotate:0deg}
+.cover.im{border-bottom:3px solid var(--ink)}
+.tag{border-radius:8px}.tag:nth-child(even){rotate:1.2deg}
+.sq{width:100%;max-width:440px;padding:11px 16px;margin:0 0 18px;border:3px solid var(--ink);border-radius:12px;background:var(--sf);color:var(--tx);box-shadow:3px 3px 0 var(--sh);font:inherit;outline:none}
+.sq:focus{border-color:#facc15}
+::selection{background:var(--ac);color:#04130b}
+:focus-visible{outline:3px solid #facc15;outline-offset:2px}
+*{scrollbar-color:var(--ac) var(--bg)}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--ac);border-radius:6px;border:2px solid var(--bg)}::-webkit-scrollbar-track{background:var(--bg)}
+#up{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:12;width:50px;height:50px;border-radius:50%;border:3px solid var(--ink);background:var(--acf);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:3px 3px 0 var(--sh);display:grid;place-items:center}
+body.admin #up{bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+@media(max-width:620px){body{font-size:17px}.card .body{padding:8px 10px 10px}.grid{gap:14px}.hero::before{width:120px;height:120px}.sq{max-width:100%}}
+body{background:radial-gradient(1100px 560px at 85% -8%,rgba(45,212,191,.10),transparent 60%),radial-gradient(900px 520px at -5% 105%,rgba(163,230,53,.07),transparent 60%),var(--bg);background-attachment:fixed}
+.tbar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}.tbar .sq{flex:1 1 220px;max-width:none;margin:0 0 14px}.tbar select.sq{flex:0 1 240px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -272,6 +300,8 @@ button,.card,.tab,.chip,.hc,.ep{touch-action:manipulation}
       <span id="xc" style="display:contents"></span>
       <button class="mini adm" data-a="add" data-l="secs">+ Раздел</button>
     </div>
+    <div class="tbar"><input id="pq" class="sq" placeholder="🔍 Поиск по проектам" aria-label="Поиск по проектам"><select id="ps" class="sq" aria-label="Сортировка"><option value="ord">По порядку</option><option value="new">Сначала новые</option><option value="old">Сначала старые</option><option value="rate">По рейтингу</option><option value="pop">По популярности</option><option value="rel">По релевантности (поиск)</option><option value="az">По алфавиту</option></select></div>
+    <div id="ptr" class="hrow"></div>
     <div id="list" class="grid"></div>
     <div id="universes" class="hide"></div>
     <div id="timeline" class="hide"></div>
@@ -280,7 +310,7 @@ button,.card,.tab,.chip,.hc,.ep{touch-action:manipulation}
   <section id="news" class="hide"><div class="hero"><h1>Новости</h1></div><div id="nwbody"></div></section>
   <section id="tsec" class="hide"><div id="tsb"></div></section>
   <section id="fun" class="hide"><div class="hero"><h1>Интересное</h1></div><div id="funbody"></div></section>
-  <section id="chars" class="hide"><div class="hero"><h1>Персонажи</h1></div><div id="chbody"></div></section>
+  <section id="chars" class="hide"><div class="hero"><h1>Персонажи</h1></div><input id="cq" class="sq" placeholder="🔍 Поиск по персонажам" aria-label="Поиск по персонажам"><div id="chbody"></div></section>
   <section id="social" class="hide">
     <div class="hero"><h1>Мы в соцсетях</h1></div>
     <div id="socgrid" class="grid"></div>
@@ -297,6 +327,7 @@ button,.card,.tab,.chip,.hc,.ep{touch-action:manipulation}
   <button id="rs">Сбросить черновик</button>
   <button id="lo">Выйти</button>
 </div>
+<button id="up" class="hide" aria-label="Наверх">↑</button>
 <div id="rd" class="hide"></div>
 <div id="gm" class="hide"></div>
 <div id="sv" class="hide"></div>
@@ -326,7 +357,7 @@ const DEF={
 };
 const FD={
  site:[["h","Заголовок","a"],["p","Подзаголовок","a"]],
- projects:[["ty","Тип карточки","s",()=>[["comic","Комикс"],["game","Игра"],["series","Сериал"]]],["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)","",null,"comic"],["eu","Земля / вселенная (впишите или выберите из прошлых)","dl",()=>EUS()],["rt","Рейтинг (например 8.5 из 10)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]],"comic"],["d","Описание","r"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"],
+ projects:[["ty","Тип карточки","s",()=>[["comic","Комикс"],["game","Игра"],["series","Сериал"]]],["n","Название"],["s","Статус"],["fm","Тип работы (комикс, манга, веб-комикс…)","",null,"comic"],["eu","Земля / вселенная (впишите или выберите из прошлых)","dl",()=>EUS()],["rt","Рейтинг (например 8.5 из 10)"],["pop","Популярность (число; чем больше, тем выше при сортировке)"],["ag","Возрастной рейтинг","s",()=>[["","—"],["0+","0+"],["6+","6+"],["12+","12+"],["16+","16+"],["18+","18+"]]],["nz","Кнопка «Скачать ZIP»","s",()=>[["","Показывать"],["1","Скрыть"]],"comic"],["d","Описание","r"],["cv","Обложка (ссылка или загрузка файла)","i"],["dt","Дата выхода","d"],
   ["dl","Ссылка для скачивания (itch.io)","",null,"game"],["gn","Жанр","",null,"game,series"],["pf","Платформы (Windows, Android…)","",null,"game"],["v","Версия","",null,"game"],["pr","Цена (например Бесплатно)","",null,"game"],["sh","Скриншоты: ссылки или пути, по одной в строке","a",null,"game"],["crt","Команда и озвучка: по строке «Роль — Имя»","a",null,"game,series"],["sn","Студия / канал (необязательно)","",null,"series"]],
  earths:[["n","Название"],["t","Описание","a"],["p","Проекты в этой Земле","m"]],
  reading:[["t","Название выпуска"],["y","Год"],["d","Описание","a"],["pr","Проект, который откроется по клику","s",()=>PO()],["dt","Дата выхода","d"]],
@@ -351,14 +382,14 @@ const pcard=(p,i,c,l,x)=>`<div class="card" data-p="${l||"projects"}:${x||""}:${
 
 function render(){
  $("#hh").innerHTML=esc(D.site.h).replace(/\n/g,"<br>");$("#hp").textContent=D.site.p;
- $("#list").innerHTML=D.projects.map((p,i)=>pcard(p,i,1)).join("")+add("projects");
+ rlist();
  if(EO&&!D.earths.find(e=>e.id==EO))EO=null;
  const e=D.earths.find(x=>x.id==EO);
  $("#universes").innerHTML=e?`<button class="back" data-back>← Все Земли</button><h2 style="margin:0 0 6px">${esc(e.n)}</h2><p style="color:var(--mu);margin:0 0 6px">${esc(e.t)}</p><button class="mini adm" data-a="edit" data-l="earths" data-i="${D.earths.indexOf(e)}">✎ Изменить Землю</button><div class="grid" style="margin-top:14px">${e.p.map(id=>D.projects.findIndex(p=>p.id==id)).filter(i=>i>=0).map(i=>pcard(D.projects[i],i,0)).join("")}</div>`
   :D.earths.map((x,i)=>`<div class="erow"><button class="earth" data-e="${x.id}"><div><b>${esc(x.n)}</b><small>Проектов: ${x.p.length}</small></div><span>→</span></button>${ctl("earths",i)}</div>`).join("")+add("earths");
  $("#timeline").className="tl";if(!$("#timeline").dataset.v)$("#timeline").classList.add("hide");
  $("#timeline").innerHTML=D.reading.map((r,i)=>`<div class="ev" data-p="${esc(r.pr||"")}"><b>Читать №${i+1}${r.dt?" · "+fd(r.dt):r.y?" · "+esc(r.y):""}</b><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p>${ctl("reading",i)}</div>`).join("")+add("reading");
- $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();rfun();rg();rs();names();vis();rd();
+ $("#socgrid").innerHTML=D.soc.map((s,i)=>`<div class="card soc" data-open="${esc(su(s.u))}"><i>${esc((s.n||"?").slice(0,2).toUpperCase())}</i><div><b>${esc(s.n)}</b><br><small>${esc(s.h)}</small></div>${ctl("soc",i)}</div>`).join("")+add("soc");rch();rxc();rsec();rnw();rrc();rnws();rnn();rnh();rhome();rfun();applyQ();rg();rs();names();vis();rd();
 }
 const TB=[["projects","Проекты"],["news","Новости"],["chars","Персонажи"],["fun","Интересное"]],SB=[["list","Мои проекты"]];
 const DEFN=Object.fromEntries([...TB,...SB]),nm=k=>(D.names||{})[k]||DEFN[k];
@@ -521,6 +552,28 @@ function rhome(){
 function goHub(h){
  if(su(h.u)){window.open(su(h.u),"_blank","noopener");return}
  enter(h.id);$(".tab[data-t=projects]").click()}
+let PS="ord",PT="";
+const TYN={comic:"Комиксы",game:"Игры",series:"Сериалы"};
+function plist(){
+ const v=($("#pq").value||"").trim().toLowerCase(),num=x=>{const n=parseFloat(String(x||"").replace(",","."));return isNaN(n)?-Infinity:n},key=p=>p.dt||(p.ts?new Date(p.ts).toISOString().slice(0,10):"");
+ let L=D.projects.map((p,i)=>({p,i}));
+ if(PT)L=L.filter(z=>(z.p.ty||"comic")==PT);
+ if(v)L=L.filter(z=>[z.p.n,z.p.gn,z.p.eu,z.p.fm,z.p.s,TYN[z.p.ty||"comic"],txt(z.p.d)].join(" ").toLowerCase().includes(v));
+ const C={new:(a,b)=>key(b.p).localeCompare(key(a.p)),old:(a,b)=>(key(a.p)||"9999").localeCompare(key(b.p)||"9999"),rate:(a,b)=>(num(b.p.rt)-num(a.p.rt))||0,pop:(a,b)=>(num(b.p.pop)-num(a.p.pop))||0,az:(a,b)=>String(a.p.n).localeCompare(String(b.p.n),"ru")}[PS];
+ if(C)L.sort(C);
+ if(PS=="rel"&&v){const sc2=z=>{const n=String(z.p.n||"").toLowerCase();return n.startsWith(v)?3:n.includes(v)?2:[z.p.gn,z.p.eu,z.p.fm,z.p.s].join(" ").toLowerCase().includes(v)?1:0};L.sort((a,b)=>sc2(b)-sc2(a))}
+ return L.map(z=>pcard(z.p,z.i,1)).join("")+add("projects")}
+function rlist(){
+ const ty=[...new Set(D.projects.map(p=>p.ty||"comic"))];if(PT&&!ty.includes(PT))PT="";
+ $("#ptr").innerHTML=ty.length>1?`<button class="hc${PT?"":" on"}" data-pt="">Все</button>${ty.map(t=>`<button class="hc${PT==t?" on":""}" data-pt="${t}">${TYN[t]||t}</button>`).join("")}`:"";
+ $("#list").innerHTML=plist();applyQ()}
+function applyQ(){
+ [["#cq","#chbody"]].forEach(([i,l])=>{const v=($(i).value||"").trim().toLowerCase();$(l).querySelectorAll(".card").forEach(c=>c.style.display=!v||c.textContent.toLowerCase().includes(v)?"":"none")});
+ $("#cq").style.display=CO?"none":""}
+document.addEventListener("input",e=>{if(e.target.id=="pq")return rlist();if(e.target.id=="cq")applyQ()});
+document.addEventListener("change",e=>{if(e.target.id=="ps"){PS=e.target.value;rlist()}});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-pt]");if(b){PT=b.dataset.pt;rlist()}});
+{const u=$("#up");addEventListener("scroll",()=>u.classList.toggle("hide",scrollY<600),{passive:true});u.onclick=()=>scrollTo({top:0,behavior:"smooth"})}
 $(".logo").onclick=()=>$(".tab[data-t=home]").click();
 let GP=null;
 function openG(r){GP=r;$("#gm").scrollTop=0;rg()}
@@ -536,7 +589,7 @@ function rg(){
 const newWorld=h=>({site:{h:(h&&h.n)||"",p:""},projects:[],earths:[],reading:[],chars:[],fun:[],secs:[],hide:{},names:{}});
 function view(id){const W=id?R.worlds[id]:null;return{site:W?W.site:R.site,projects:W?W.projects:[],earths:W?W.earths:[],reading:W?W.reading:[],chars:W?W.chars:[],fun:W?W.fun:[],secs:W?W.secs:[],hide:W?W.hide:{},names:W?W.names:{},soc:R.soc,hubs:R.hubs,news:R.news}}
 function syncOut(){if(!R)return;if(CUR&&R.worlds[CUR]){const W=R.worlds[CUR];["site","projects","earths","reading","chars","fun","secs","hide","names"].forEach(k=>W[k]=D[k])}else if(!CUR)R.site=D.site;R.soc=D.soc;R.hubs=D.hubs;R.news=D.news}
-function enter(id){syncOut();if(id&&!R.worlds[id])R.worlds[id]=newWorld(R.hubs.find(x=>x.id==id));CUR=id||null;D=view(CUR);EO=CO=NW=SO=TO=SP=SE=null;FUN=null;FC="";killPlayer();HV="main";render();window.scrollTo(0,0);if(CUR)$(".chip[data-s=list]").click()}
+function enter(id){syncOut();if(id&&!R.worlds[id])R.worlds[id]=newWorld(R.hubs.find(x=>x.id==id));CUR=id||null;D=view(CUR);EO=CO=NW=SO=TO=SP=SE=null;FUN=null;FC="";PS="ord";PT="";$("#ps").value="ord";$("#pq").value="";$("#cq").value="";killPlayer();HV="main";render();window.scrollTo(0,0);if(CUR)$(".chip[data-s=list]").click()}
 const hubName=id=>(D.hubs.find(h=>h.id==id)||{}).n||"Мир";
 function worldOf(id){for(const k of Object.keys(R.worlds)){const W=R.worlds[k];if(W.projects.some(p=>p.id==id)||W.secs.some(q=>(q.items||[]).some(p=>p.id==id)))return k}return null}
 const FDE=[["se","Сезон (число)"],["n","Название серии"],["d","Описание","a"],["th","Превью (ссылка или файл)","i"],["dur","Длительность, например 24 мин (необязательно)"],["src","Видео: по строке «Озвучка | Качество | Ссылка» (mp4, webm, m3u8, YouTube, Vimeo). Субтитры: «Субтитры | Название | ссылка.vtt»","ta"]];
@@ -817,8 +870,8 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-rt]"))return $("#rd").scrollTo({top:0,behavior:"smooth"});
  const pp=e.target.closest("[data-p]");
  if(pp&&pp.dataset.p&&!e.target.closest(".ctl")){openP(pp.dataset.p);return}
- const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;CF=1;rch();CF=0;window.scrollTo(0,0);return}
- if(e.target.closest("[data-cback]")){CO=null;window.scrollTo(0,0);return rch()}
+ const cc=e.target.closest("[data-c]");if(cc){CO=cc.dataset.c;CF=1;rch();CF=0;applyQ();window.scrollTo(0,0);return}
+ if(e.target.closest("[data-cback]")){CO=null;window.scrollTo(0,0);rch();applyQ();return}
  const ge=e.target.closest("[data-ge]");if(ge){EO=ge.dataset.ge;$(".tab[data-t=projects]").click();$(".chip[data-s=universes]").click();return render()}
  const er=e.target.closest("[data-e]");if(er){EO=er.dataset.e;return render()}
  if(e.target.closest("[data-back]")){EO=null;return render()}
